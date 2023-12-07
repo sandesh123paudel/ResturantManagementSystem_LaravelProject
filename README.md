@@ -1,4 +1,4 @@
-<p align="center"><a href="https://storage/app/public/images/logo.png" target="_blank"><img src="storage/app/public/images/logo.png" width="200" alt="Laravel Logo" bacj></a></p>
+<p align="center"><a href="https://storage/app/public/images/logo.png" target="_blank"><img src="https://i.ibb.co/xSJYqyf/logo.png" width="200" alt="Laravel Logo" bacj></a></p>
 
 <p align="center">
 <a href="https://github.com/comp-bkt/component-2-sandesh123paudel/tree/master">VLE Repo</a>
