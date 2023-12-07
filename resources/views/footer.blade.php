@@ -1,10 +1,11 @@
-<div class="container">
-    <footer class="bg-body-tertiary text-center text-lg-start mt-auto">
-        <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: #e3f2fd;">
-          ©2023 Copyright:
-          <a >Silver Point Restaurant</a>
+<div class="container-fluid navbar-light bg-light">
+  <div class="row">
+    <div class="col-12 text-center">
+      <footer class="bg-body-tertiary mt-auto">
+        <div class="text-center p-3" style="background-color:primary;">
+          <p>Copyright &copy; 2023-<script>document.write(new Date().getFullYear())</script> Silver Point Restaurant. All Rights Reserved</p>
         </div>
-        <!-- Copyright -->
-    </footer>
+      </footer>
+    </div>
+  </div>
 </div>

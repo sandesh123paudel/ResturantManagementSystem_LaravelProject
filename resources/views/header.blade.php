@@ -1,5 +1,7 @@
-<div class="container ">
-    <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+<div class="nav-section main-menu navbar-light bg-light">
+  <div class="container ">
+    
+      <nav class="navbar navbar-expand-lg ">
         <a class="navbar-brand" href="#">
             <img src="{{asset('storage/images/logo.png')}}" alt="Image" width="60" height="50" alt="">
           </a>
@@ -45,4 +47,6 @@
         
         </div>
       </nav>
+    
+</div>
 </div>

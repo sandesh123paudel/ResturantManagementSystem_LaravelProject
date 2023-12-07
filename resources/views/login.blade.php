@@ -1,10 +1,11 @@
 @extends('home')
 
 @section('content')
-    
 <div class="custom-login">
-    <div class="row">
-        <div class="col-sm-4 offset-sm-4">
+    <div class="user-entry">
+        <div class="col-sm-3 offset-sm-5">
+            <h1>Welcome back!</h1>
+            <h2>Enjoy foodies!!</h2>
             <form action="login" method="POST">
                 @csrf
 
@@ -16,8 +17,10 @@
                 <div class="form-group">
                   <label for="exampleInputPassword1">Password</label>
                   <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  <small id="passwordHelp" class="form-text text-muted">Please create a strong password.</small>
+
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-secondary center-btn">Login</button>
               </form>
         </div>
     </div>
