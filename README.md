@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="public/images/logo.svg" width="200" alt="Silver Point Restaurant"> </a></p>
+<p align="center"><a href="http://127.0.0.1:8000/" target="_blank"><img src="public/images/logo.svg" width="200" alt="Silver Point Restaurant"> </a></p>
 
 <p align="center">
 <a href="https://github.com/comp-bkt/component-2-sandesh123paudel/tree/master">VLE Repo</a>
