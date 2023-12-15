@@ -1,7 +1,5 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="public/images/logo.svg" width="200" alt="Silver Point Restaurant"> </a></p>
 
-
-
 <p align="center">
 <a href="https://github.com/comp-bkt/component-2-sandesh123paudel/tree/master">VLE Repo</a>
 <a href="https://github.com/tbc-bsc-l6/component-2-sandesh123paudel">The British College Repo</a>

@@ -3,7 +3,7 @@
         <div class="container ">
           
             <nav class="navbar navbar-expand-lg ">
-              <a class="navbar-brand" href="#">
+              <a class="navbar-brand" href="/">
                   <img src="{{asset('/images/logo.svg')}}" alt="Image" width="80" height="80" alt="" class="mr-5">
                 </a>
           
@@ -22,21 +22,21 @@
                 <div class="ml-auto">
                   <ul class="navbar-nav">
                     <li class="nav-item active">
-                      <a class="nav-link" href="" style="color: black;">Home <span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="/" style="color: black;">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#" style="color: black;">Menu</a>
+                      <a class="nav-link" href="/" style="color: black;">Menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: black;">Orders</a>
+                        <a class="nav-link" href="/" style="color: black;">Orders</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: black;">Contact Us</a>
+                        <a class="nav-link" href="/" style="color: black;">Contact Us</a>
                       </li>
                 
                     </li>
                     <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" style="color: black;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle" style="color: black;" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Register
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">

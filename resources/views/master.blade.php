@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ asset('images//favicon.png') }}" type="image/png" sizes="64x64">
 
 
     <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
@@ -22,9 +21,9 @@
 <body>
 
     {{View::make('header')}}
-    {{View::make('slider')}}
+    
    <div class="content">
-    @yield('')
+    @yield('content')
    </div>
    
    {{View::make('footer')}}

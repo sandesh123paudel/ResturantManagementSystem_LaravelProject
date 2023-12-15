@@ -1,3 +1,6 @@
+@extends('master')
+
+@section('content')
 <div class="container">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="3000">
         <ol class="carousel-indicators">
@@ -58,3 +61,6 @@
 
 
 
+
+    
+@endsection
