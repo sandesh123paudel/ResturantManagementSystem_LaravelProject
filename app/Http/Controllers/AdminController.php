@@ -50,4 +50,33 @@ class AdminController extends Controller
         return view('admin.items.additem');
     }
 
+    public function Products()
+    {
+        return view('admin.products.products');
+    }
+
+    public function AddProducts()
+    {
+
+        return view('admin.products.addproducts');
+    }
+
+    public function Orders()
+    {
+
+        return view('admin.orders.orders');
+    }
+
+    public function Users()
+    {
+
+        return view('admin.users.users');
+    }
+    public function AddUsers()
+    {
+
+        return view('admin.users.adduser');
+    }
+
+
 }

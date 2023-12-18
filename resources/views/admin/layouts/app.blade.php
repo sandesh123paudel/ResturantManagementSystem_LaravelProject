@@ -37,7 +37,7 @@
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link p-0 pr-3" data-toggle="dropdown" href="#">
-							<img src="{{asset('images/logo.svg')}}" class='img-circle elevation-2' width="40" height="40" alt="">
+							<img src="{{asset('images/logo.svg')}}" class='img-circle elevation-0' width="40" height="40" alt="">
 						</a>
 						<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-3">
 							<h4 class="h4 mb-0"><strong>Admin</strong></h4>

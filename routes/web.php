@@ -35,6 +35,15 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::get('/admin/addcategory', [AdminController::class, 'AddCategory'])->name('admin.addcategory');
     Route::get('/admin/item', [AdminController::class, 'Item'])->name('admin.item');
     Route::get('/admin/additem', [AdminController::class, 'AddItem'])->name('admin.additem');
+    Route::get('/admin/products', [AdminController::class, 'Products'])->name('admin.products');
+    Route::get('/admin/addproducts', [AdminController::class, 'AddProducts'])->name('admin.addproducts');
+    Route::get('/admin/orders', [AdminController::class, 'Orders'])->name('admin.orders');
+    Route::get('/admin/users', [AdminController::class, 'Users'])->name('admin.users');
+    Route::get('/admin/addusers', [AdminController::class, 'AddUsers'])->name('admin.addusers');
+
+
+
+
 
 
 
