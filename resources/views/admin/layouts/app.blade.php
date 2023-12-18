@@ -44,6 +44,10 @@
 							<div class="mb-3">admin@admin.com</div>
 							<div class="dropdown-divider"></div>
 							<div class="dropdown-divider"></div>
+                            <div class="dropdown-divider"></div>
+							<a href="#" class="dropdown-item">
+								<i class="fas fa-lock mr-2"></i> Change Password
+							</a>
 							<a href={{ route('admin.logout')}} class="dropdown-item text-danger">
 								<i class="fas fa-sign-out-alt mr-2"></i> Logout							
 							</a>							
@@ -63,7 +67,7 @@
 			<!-- /.content-wrapper -->
 			<footer class="main-footer">
 				
-				<strong>Copyright &copy; 2014-2022 AmazingShop All rights reserved.
+  <strong>Copyright &copy; 2023-<script>document.write(new Date().getFullYear())</script> Silver Point Restaurant. All Rights Reserved</strong>
 			</footer>
 			
 		</div>

@@ -37,7 +37,7 @@ class AuthenticatedSessionController extends Controller
         }
         elseif($request->user()->role ==='user')
         {
-            $url='/slider';
+            $url='/';
         }
 
         return redirect()->intended($url);

@@ -29,4 +29,25 @@ class AdminController extends Controller
         return redirect('/');
     }
 
+
+    public function Category()
+    {
+        return view('admin.category.category');
+    }
+
+    public function AddCategory()
+    {
+        return view('admin.category.addcategory');
+    }
+
+    public function Item()
+    {
+        return view('admin.items.item');
+    }
+
+    public function AddItem()
+    {
+        return view('admin.items.additem');
+    }
+
 }
