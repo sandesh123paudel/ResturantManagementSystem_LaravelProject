@@ -8,7 +8,7 @@
     <div class="container-fluid my-2">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Create Category</h1>
+                <h1>Edit Category</h1>
             </div>
             <div class="col-sm-6 text-right">
                 <a href={{route('admin.category')}} class="btn btn-primary">Back</a>
@@ -27,9 +27,11 @@
     <!-- Default box -->
     <div class="container-fluid">
         
-        <form method="POST" action="{{route('admin.storecategory')}}">
+        <form method="POST" action="{{route('admin.updatecategory')}}">
 
             @csrf
+
+            <input type="hidden" name="id" value="{{$category->id}}">
         <div class="card">
             <div class="card-body">	
                 							
@@ -39,7 +41,7 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="name">Category Name</label>
-                                    <input type="text" name="name" id="name" class="form-control  @error('name') is-invalid @enderror" placeholder="Category Name" value="{{old('name')}}">	
+                                    <input type="text" name="name" value="{{$category->name}}" id="name" class="form-control  @error('name') is-invalid @enderror" placeholder="Category Name">	
                                     @error('name')
                                     <span class="text-danger">{{$message}}</span>
                                         
@@ -48,8 +50,8 @@
         
                                 <div class="mb-3">
                                     <label for="name">Category Icon</label>
-                                    <input type="text" name="category_icon" id="name" class="form-control  @error('category_icon') is-invalid @enderror" placeholder="Category Icon" value="{{old('category_icon')}}">	
-                                    @error('category_icon')
+                                    <input type="text" name="category_icon" value="{{$category->category_icon}}" id="name" class="form-control  @error('category_icon') is-invalid @enderror" placeholder="Category Icon">	
+                                    @error('name')
                                     <span class="text-danger">{{$message}}</span>
                                         
                                     @enderror
@@ -63,7 +65,7 @@
             </div>							
         </div>
         <div class="pb-5 pt-3">
-            <button class="btn btn-primary" type="submit">Create</button>
+            <button class="btn btn-primary" type="submit">Edit</button>
             <a href={{route('admin.category')}} class="btn btn-outline-dark ml-3">Cancel</a>
         </div>
     </form>	

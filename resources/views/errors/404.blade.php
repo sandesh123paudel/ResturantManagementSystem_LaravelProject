@@ -8,7 +8,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <img class="error-image" src="images/err.png" alt="Error Image" height="200">
+                <img class="error-image" src={{asset('/images/err.png')}} alt="Error Image" height="200">
         
                 <div class="card-header" style="color: red">404 Page Not Found</div>
 

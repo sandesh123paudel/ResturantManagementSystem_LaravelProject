@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\CategoryController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,23 +18,47 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', function () {
-    return view('slider');
+    return view('home');
 });
 
 
 
 
 Route::get('/welcome', function () {
-    return view('slider');
+    return view('home');
 });
 
+
+// Route::middleware(['auth','role:admin,user'])->group(function(){
+//     Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
+// });
+
+Route::middleware(['auth','role:admin'])->group(function(){
+
+   
+
+
+});
 
 
 Route::middleware(['auth','role:admin'])->group(function(){
     Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
     Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
-    Route::get('/admin/category', [AdminController::class, 'Category'])->name('admin.category');
-    Route::get('/admin/addcategory', [AdminController::class, 'AddCategory'])->name('admin.addcategory');
+
+    Route::controller(CategoryController::class)->group(function(){
+        Route::get('admin/category/category','Category')->name('admin.category');
+        Route::get('admin/category/addcategory','AddCategory')->name('admin.addcategory');
+        Route::post('admin/category/storecategory','StoreCategory')->name('admin.storecategory');
+        Route::get('admin/category/editcategory/{id}','EditCategory')->name('admin.editcategory');
+        Route::post('admin/category/updatecategory','UpdateCategory')->name('admin.updatecategory');
+
+
+
+    });
+
+
+ // Route::get('/admin/category', [CategoryController::class, 'Category'])->name('admin.category');
+  //  Route::get('/admin/addcategory', [AdminController::class, 'AddCategory'])->name('admin.addcategory');
     Route::get('/admin/item', [AdminController::class, 'Item'])->name('admin.item');
     Route::get('/admin/additem', [AdminController::class, 'AddItem'])->name('admin.additem');
     Route::get('/admin/products', [AdminController::class, 'Products'])->name('admin.products');
@@ -41,13 +67,10 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::get('/admin/users', [AdminController::class, 'Users'])->name('admin.users');
     Route::get('/admin/addusers', [AdminController::class, 'AddUsers'])->name('admin.addusers');
 
-
-
-
-
-
-
 });// End group  Admin Middleware
+
+
+
 
 
 Route::get('/dashboard', function () {
