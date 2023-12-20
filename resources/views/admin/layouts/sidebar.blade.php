@@ -7,7 +7,7 @@
     </a>
     <!-- Sidebar -->
     <div class="sidebar">
-        <!-- Sidebar user (optional) -->
+      
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
@@ -20,16 +20,11 @@
                 </li>
                 <li class="nav-item">
                     <a href={{ route('admin.category')}} class="nav-link">
-                        <i class="nav-icon fas fa-file-alt"></i>
+                        <i class="nav-icon fas fa-hamburger"></i>
                         <p>Category</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href={{ route('admin.item')}} class="nav-link">
-                        <i class="nav-icon fas fa-hamburger"></i>
-                        <p>Items</p>
-                    </a>
-                </li>
+              
                 <li class="nav-item">
                     <a href={{ route('admin.products')}} class="nav-link">
                         <i class="nav-icon fas fa-pizza-slice"></i>

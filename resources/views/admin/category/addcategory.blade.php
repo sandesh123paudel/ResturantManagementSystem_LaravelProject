@@ -27,7 +27,7 @@
     <!-- Default box -->
     <div class="container-fluid">
         
-        <form method="POST" action="{{route('admin.storecategory')}}">
+        <form method="POST" action="{{route('admin.storecategory')}}" enctype="multipart/form-data">
 
             @csrf
         <div class="card">
@@ -47,13 +47,13 @@
                                 </div>
         
                                 <div class="mb-3">
-                                    <label for="name">Category Icon</label>
-                                    <input type="text" name="category_icon" id="name" class="form-control  @error('category_icon') is-invalid @enderror" placeholder="Category Icon" value="{{old('category_icon')}}">	
+                                    <label for="category_icon">Category Icon</label>
+                                    <input type="file" name="category_icon" id="category_icon" class="form-control @error('category_icon') is-invalid @enderror" accept="image/*">
                                     @error('category_icon')
-                                    <span class="text-danger">{{$message}}</span>
-                                        
+                                        <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
+                                
                             </div>
                                         
                         

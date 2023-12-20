@@ -38,25 +38,37 @@
 
                     <li class="nav-item dropdown">
                       @auth
+                          @if(Auth::user()->role=='admin')
+                              <a class="nav-link dropdown-toggle" style="color: black;" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  {{ Auth::user()->name }}
+                              </a>
+                              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                  <a class="dropdown-item" href="{{ route('admin.dashboard') }}" style="color: black;">Dashboard</a>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item" href="{{ route('admin.logout') }}" style="color: black;">Logout</a>
+                              </div>
+                          @else
+                              <a class="nav-link dropdown-toggle" style="color: black;" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  {{ Auth::user()->name }}
+                              </a>
+                              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('admin.dashboard') }}" style="color: black;">Dashboard</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('admin.dashboard') }}" style="color: black;">Logout</a>
+                            </div>
+                          @endif
+                      @else
                           <a class="nav-link dropdown-toggle" style="color: black;" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              {{ Auth::user()->name }}
+                              Register
                           </a>
                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="{{ route('login') }}" style="color: black;">Dashboard</a>
+                              <a class="dropdown-item" href="{{ route('login') }}" style="color: black;">Login</a>
                               <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" href="{{ route('admin.logout') }}" style="color: black;">Logout</a>
+                              <a class="dropdown-item" href="{{ route('register') }}" style="color: black;">SignUp</a>
                           </div>
-                      @else
-                      <a class="nav-link dropdown-toggle" style="color: black;" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Register
-                    </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="nav-link" href="{{ route('login') }}" style="color: black;">Login</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="nav-link" href="{{ route('register') }}" style="color: black;">SignUp</a>
-                      </div>
                       @endauth
                   </li>
+                  
                   
                   </ul>
                 </div>

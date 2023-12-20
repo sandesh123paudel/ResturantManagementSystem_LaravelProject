@@ -46,21 +46,20 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
 
     Route::controller(CategoryController::class)->group(function(){
-        Route::get('admin/category/category','Category')->name('admin.category');
-        Route::get('admin/category/addcategory','AddCategory')->name('admin.addcategory');
-        Route::post('admin/category/storecategory','StoreCategory')->name('admin.storecategory');
-        Route::get('admin/category/editcategory/{id}','EditCategory')->name('admin.editcategory');
-        Route::post('admin/category/updatecategory','UpdateCategory')->name('admin.updatecategory');
+        Route::get('/admin/categories', 'SearchCategory')->name('admin.category');
 
+        Route::get('admin/category','Category')->name('admin.category');
+        Route::get('admin/addcategory','AddCategory')->name('admin.addcategory');
+        Route::post('admin/storecategory','StoreCategory')->name('admin.storecategory');
+        Route::get('admin/editcategory/{id}','EditCategory')->name('admin.editcategory');
+        Route::post('admin/updatecategory','UpdateCategory')->name('admin.updatecategory');
+        Route::get('admin/deletecategory/{id}','DeleteCategory')->name('admin.deletecategory');
+
+        
 
 
     });
 
-
- // Route::get('/admin/category', [CategoryController::class, 'Category'])->name('admin.category');
-  //  Route::get('/admin/addcategory', [AdminController::class, 'AddCategory'])->name('admin.addcategory');
-    Route::get('/admin/item', [AdminController::class, 'Item'])->name('admin.item');
-    Route::get('/admin/additem', [AdminController::class, 'AddItem'])->name('admin.additem');
     Route::get('/admin/products', [AdminController::class, 'Products'])->name('admin.products');
     Route::get('/admin/addproducts', [AdminController::class, 'AddProducts'])->name('admin.addproducts');
     Route::get('/admin/orders', [AdminController::class, 'Orders'])->name('admin.orders');

@@ -3,6 +3,7 @@
 
 @section('content')
 
+<title>404 Errors</title>
 
 <div class="container error-card">
     <div class="row justify-content-center">
