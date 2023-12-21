@@ -28,28 +28,6 @@ class AdminController extends Controller
     }
 
 
-
-    public function Item()
-    {
-        return view('admin.items.item');
-    }
-
-    public function AddItem()
-    {
-        return view('admin.items.additem');
-    }
-
-    public function Products()
-    {
-        return view('admin.products.products');
-    }
-
-    public function AddProducts()
-    {
-
-        return view('admin.products.addproducts');
-    }
-
     public function Orders()
     {
 

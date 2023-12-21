@@ -54,16 +54,12 @@
                             <td>{{$key+1}}</td>
                             <td>{{$item->name}}</td>
                             <td>
-    @if($item->category_icon)
-        <img src="{{ asset('storage/' . $item->category_icon) }}" alt="Icon" class="category-icon rounded-circle border border-grey" style="max-width: 50px; max-height: 50px;">
-    @else
-        No Icon
-    @endif
-</td>
-
-                            
-                            
-                            
+                                @if($item->category_icon)
+                                    <img src="{{ asset('storage/' . $item->category_icon) }}" alt="Icon" class="category-icon rounded-circle border border-grey" style="max-width: 50px; max-height: 50px;">
+                                @else
+                                    No Icon
+                                @endif
+                            </td>
                             <td>
                                 <a href="{{route('admin.editcategory',$item->id)}}">
                                     <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -94,22 +90,14 @@
                     </script>
                 @endif
                 </table>
-                <div class="d-flex justify-content-end mr-3">
-    <div class="pagination">
-        {{ $category->links() }}
-    </div>
-</div>
-
-                
-                
-                
-										
-            </div>
-            
-           
-                
-              
-            
+                <div class="card-footer clearfix">
+                    <div class="d-flex justify-content-end">
+                        <div class="pagination">
+                            {{ $category->links() }}
+                        </div>
+                    </div>
+                </div>					
+            </div> 
         </div>
     </div>
     

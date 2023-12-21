@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
+
+
+   
     public function Category()
     {
         $category = Category::orderBy('created_at', 'desc')->paginate(5);
@@ -22,18 +25,7 @@ class CategoryController extends Controller
         return view('admin.category.addcategory');
     }
 
-    public function SearchCategory(Request $request)
-    {
-        $searchQuery = $request->input('table_search');
-
-    // Use the query to filter your categories
-    $categories = Category::when($searchQuery, function ($query) use ($searchQuery) {
-        return $query->where('name', 'like', '%' . $searchQuery . '%');
-    })->paginate(10);
-
-    return view('admin.category.category', compact('categories'));
-    }
-
+  
 
 
     public function storeCategory(Request $request)

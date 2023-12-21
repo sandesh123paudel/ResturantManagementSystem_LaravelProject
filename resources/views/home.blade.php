@@ -6,7 +6,7 @@
 @include('slider')
 
 
-
+@include('categories')
 
 
 @endsection

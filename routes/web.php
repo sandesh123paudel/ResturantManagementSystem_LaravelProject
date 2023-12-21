@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\CategoryController;
-
+use App\Http\Controllers\Backend\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +46,6 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
 
     Route::controller(CategoryController::class)->group(function(){
-        Route::get('/admin/categories', 'SearchCategory')->name('admin.category');
 
         Route::get('admin/category','Category')->name('admin.category');
         Route::get('admin/addcategory','AddCategory')->name('admin.addcategory');
@@ -54,14 +53,21 @@ Route::middleware(['auth','role:admin'])->group(function(){
         Route::get('admin/editcategory/{id}','EditCategory')->name('admin.editcategory');
         Route::post('admin/updatecategory','UpdateCategory')->name('admin.updatecategory');
         Route::get('admin/deletecategory/{id}','DeleteCategory')->name('admin.deletecategory');
+    });
 
-        
+    Route::controller(ProductController::class)->group(function(){
+
+        Route::get('admin/products','Product')->name('admin.products');
+        Route::get('admin/addproducts','AddProducts')->name('admin.addproducts');
 
 
     });
+    
 
-    Route::get('/admin/products', [AdminController::class, 'Products'])->name('admin.products');
-    Route::get('/admin/addproducts', [AdminController::class, 'AddProducts'])->name('admin.addproducts');
+
+
+    //Route::get('/admin/products', [AdminController::class, 'Products'])->name('admin.products');
+   // Route::get('/admin/addproducts', [AdminController::class, 'AddProducts'])->name('admin.addproducts');
     Route::get('/admin/orders', [AdminController::class, 'Orders'])->name('admin.orders');
     Route::get('/admin/users', [AdminController::class, 'Users'])->name('admin.users');
     Route::get('/admin/addusers', [AdminController::class, 'AddUsers'])->name('admin.addusers');

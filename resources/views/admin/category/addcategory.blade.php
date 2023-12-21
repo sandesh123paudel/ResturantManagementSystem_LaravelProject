@@ -1,9 +1,6 @@
 @extends('admin.layouts.app')
 
-
 @section('content')
-
-
 <section class="content-header">					
     <div class="container-fluid my-2">
         <div class="row mb-2">
