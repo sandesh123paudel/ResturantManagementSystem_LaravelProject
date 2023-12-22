@@ -8,7 +8,7 @@
     <div class="container-fluid my-2">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Edit Category</h1>
+                <h1>Edit Category "{{$category->name}}"</h1>
             </div>
             <div class="col-sm-6 text-right">
                 <a href={{route('admin.category')}} class="btn btn-primary">Back</a>
@@ -26,7 +26,7 @@
 
     <!-- Default box -->
     <div class="container-fluid">
-        <form method="POST" action="{{ route('admin.updatecategory') }}" enctype="multipart/form-data">
+        <form method="POST" action={{ route('admin.updatecategory') }} enctype="multipart/form-data">
 
             @csrf
         

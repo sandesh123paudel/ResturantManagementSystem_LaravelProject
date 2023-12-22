@@ -6,6 +6,8 @@ use App\Models\Product;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 
 class ProductController extends Controller
@@ -78,6 +80,86 @@ class ProductController extends Controller
 
 
     }
+
+    public function EditProduct($id)
+    {
+        $product = Product::find($id);
+        $categories = Category::all();
+        return view('admin.products.editproduct',compact('product','categories'));
+
+    }
+
+
+    public function UpdateProducts(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|max:20|unique:products,name,' . $id,
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'description' => 'nullable',
+            'price' => 'required|numeric|min:0',
+            'category' => 'required|exists:categories,id',
+            'item' => 'required|in:veg,non-veg',
+        ]);
+    
+        // Retrieve the existing product
+        $product = Product::findOrFail($id);
+    
+        // Delete the old image if it exists
+        if ($request->hasFile('image') && $product->product_image) {
+            Storage::disk('public')->delete($product->product_image);
+        }
+    
+        // Update product information
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->category_id = $request->category;
+        $product->item = $request->item;
+    
+        // Update image if provided
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('product_images', 'public');
+            $product->product_image = $imagePath;
+        }
+    
+        // Save changes to the database
+        $product->update();
+    
+        $notification = [
+            'message' => 'Product " ' . $request->name . ' " Updated Successfully',
+            'alert-type' => 'success',
+        ];
+    
+        return redirect()->route('admin.products')->with($notification);
+    }
+
+    public function DeleteProduct(Request $request)
+    {
+        $id=$request->id;
+
+        $product= Product::findOrFail($id);
+
+        if($product->product_image)
+        {
+            Storage::disk('public')->delete($product->product_image);
+
+        }
+
+        $product->delete();
+
+        $notification = [
+            'message' => 'Product " ' . $product->name . ' " Deleted Successfully',
+            'alert-type' => 'success',
+        ];
+    
+        return redirect()->route('admin.products')->with($notification);
+
+    
+
+    }
+
+
+
 
 
 

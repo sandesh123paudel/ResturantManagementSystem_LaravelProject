@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +62,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('admin/products', 'Product')->name('admin.products');
         Route::get('admin/addproducts', 'AddProducts')->name('admin.addproducts');
         Route::post('admin/storeproducts', 'StoreProducts')->name('admin.storeproducts');
+        Route::get('admin/editproduct/{id}','EditProduct');
+        Route::put('admin/updateproduct/{id}','UpdateProducts');
+        Route::get('admin/deleteproduct/{id}', 'DeleteProduct')->name('admin.deleteproduct');
+        
 
+
+    });
+
+    Route::controller(UserController::class)->group(function(){
+        Route::get('admin/users','Users')->name('admin.users');
 
     });
 
