@@ -33,46 +33,47 @@ Route::get('/welcome', function () {
 //     Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
 // });
 
-Route::middleware(['auth','role:admin'])->group(function(){
+Route::middleware(['auth', 'role:admin'])->group(function () {
 
-   
+
 
 
 });
 
 
-Route::middleware(['auth','role:admin'])->group(function(){
+Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
     Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
 
-    Route::controller(CategoryController::class)->group(function(){
+    Route::controller(CategoryController::class)->group(function () {
 
-        Route::get('admin/category','Category')->name('admin.category');
-        Route::get('admin/addcategory','AddCategory')->name('admin.addcategory');
-        Route::post('admin/storecategory','StoreCategory')->name('admin.storecategory');
-        Route::get('admin/editcategory/{id}','EditCategory')->name('admin.editcategory');
-        Route::post('admin/updatecategory','UpdateCategory')->name('admin.updatecategory');
-        Route::get('admin/deletecategory/{id}','DeleteCategory')->name('admin.deletecategory');
+        Route::get('admin/category', 'Category')->name('admin.category');
+        Route::get('admin/addcategory', 'AddCategory')->name('admin.addcategory');
+        Route::post('admin/storecategory', 'StoreCategory')->name('admin.storecategory');
+        Route::get('admin/editcategory/{id}', 'EditCategory')->name('admin.editcategory');
+        Route::post('admin/updatecategory', 'UpdateCategory')->name('admin.updatecategory');
+        Route::get('admin/deletecategory/{id}', 'DeleteCategory')->name('admin.deletecategory');
     });
 
-    Route::controller(ProductController::class)->group(function(){
+    Route::controller(ProductController::class)->group(function () {
 
-        Route::get('admin/products','Product')->name('admin.products');
-        Route::get('admin/addproducts','AddProducts')->name('admin.addproducts');
+        Route::get('admin/products', 'Product')->name('admin.products');
+        Route::get('admin/addproducts', 'AddProducts')->name('admin.addproducts');
+        Route::post('admin/storeproducts', 'StoreProducts')->name('admin.storeproducts');
 
 
     });
-    
+
 
 
 
     //Route::get('/admin/products', [AdminController::class, 'Products'])->name('admin.products');
-   // Route::get('/admin/addproducts', [AdminController::class, 'AddProducts'])->name('admin.addproducts');
+    // Route::get('/admin/addproducts', [AdminController::class, 'AddProducts'])->name('admin.addproducts');
     Route::get('/admin/orders', [AdminController::class, 'Orders'])->name('admin.orders');
     Route::get('/admin/users', [AdminController::class, 'Users'])->name('admin.users');
     Route::get('/admin/addusers', [AdminController::class, 'AddUsers'])->name('admin.addusers');
 
-});// End group  Admin Middleware
+}); // End group  Admin Middleware
 
 
 
@@ -89,7 +90,7 @@ Route::middleware('auth')->group(function () {
 });
 
 //Route::
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
 
