@@ -78,11 +78,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 
 
-    //Route::get('/admin/products', [AdminController::class, 'Products'])->name('admin.products');
-    // Route::get('/admin/addproducts', [AdminController::class, 'AddProducts'])->name('admin.addproducts');
     Route::get('/admin/orders', [AdminController::class, 'Orders'])->name('admin.orders');
-    Route::get('/admin/users', [AdminController::class, 'Users'])->name('admin.users');
-    Route::get('/admin/addusers', [AdminController::class, 'AddUsers'])->name('admin.addusers');
+    //Route::get('/admin/users', [AdminController::class, 'Users'])->name('admin.users');
+    //Route::get('/admin/addusers', [AdminController::class, 'AddUsers'])->name('admin.addusers');
 
 }); // End group  Admin Middleware
 

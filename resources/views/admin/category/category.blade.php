@@ -55,7 +55,7 @@
                             <td>{{$item->name}}</td>
                             <td>
                                 @if($item->category_icon)
-                                    <img src="{{ asset('storage/' . $item->category_icon) }}" alt="Icon" class="category-icon rounded-circle border border-grey" style="max-width: 50px; max-height: 50px;">
+                                    <img src="{{ asset('storage/' . $item->category_icon) }}" alt="Icon" class="category-icon rounded-circle border border-grey" style="max-width:60px; max-height:60px">
                                 @else
                                     No Icon
                                 @endif

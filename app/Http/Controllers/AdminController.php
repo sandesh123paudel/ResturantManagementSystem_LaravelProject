@@ -34,11 +34,7 @@ class AdminController extends Controller
         return view('admin.orders.orders');
     }
 
-    public function Users()
-    {
-
-        return view('admin.users.users');
-    }
+   
     public function AddUsers()
     {
 
