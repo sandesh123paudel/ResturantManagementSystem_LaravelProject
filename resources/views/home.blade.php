@@ -8,6 +8,8 @@
 
 @include('categories')
 
+@include('bestproducts')
+
 
 @endsection
 

@@ -1,38 +1,89 @@
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+<link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
 <div class="container mt-4 mb-4">
     <h3 class="category-heading">Our Categories</h3>
-    <div class="container mt-4">
-        <img src="{{asset('/app/public/category_icons/6DvyRVyiUKAkrhnKLjAw4IpHvzxMoyZR7yzSNnil.png')}}" class="img-fluid rounded-circle profile-image" alt="Profile Image 1" data-toggle="tooltip" data-placement="bottom" title="Name 1">
-        <img src="https://cdn-0.codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg" class="img-fluid rounded-circle profile-image" alt="Profile Image 2" data-toggle="tooltip" data-placement="bottom" title="Name 2">
-        <img src="https://cdn-0.codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg" class="img-fluid rounded-circle profile-image" alt="Profile Image 3" data-toggle="tooltip" data-placement="bottom" title="Name 3">
-        <img src="https://cdn-0.codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg" class="img-fluid rounded-circle profile-image" alt="Profile Image 4" data-toggle="tooltip" data-placement="bottom" title="Name 4">
-        <img src="https://cdn-0.codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg" class="img-fluid rounded-circle profile-image" alt="Profile Image 5" data-toggle="tooltip" data-placement="bottom" title="Name 5">
-        <img src="https://cdn-0.codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg" class="img-fluid rounded-circle profile-image" alt="Profile Image 6" data-toggle="tooltip" data-placement="bottom" title="Name 6">
-        {{-- <img src="https://cdn-0.codingyaar.com/wp-content/uploads/bootstrap-profile-card-image.jpg" class="img-fluid rounded-circle profile-image" alt="Profile Image 7" data-toggle="tooltip" data-placement="bottom" title="Name 7"> --}}
-      </div>
-      
-      <style>
-        .container {
-          margin-top: 20px;
-          text-align: center;
+    <div id="categoryCarousel" class="slick-carousel">
+        @foreach ($viewcategories as $category)
+            <div class="profile-content">
+                <img src="{{ asset('storage/' . $category->category_icon) }}"
+                    class="img-fluid rounded-circle profile-image" alt="Profile Image 1">
+                <p class="category-name " style="color: rgba(23, 10, 10, 0.729); ">{{ $category->name }}</p>
+
+            </div>
+        @endforeach
+    </div>
+
+    <style>
+        .profile-container {
+            border-radius: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+            margin: 0 5px;
+            /* Adjust margin for better spacing */
+            align-items: stretch;
+            width: 90%;
+            /* Set a percentage width for better responsiveness */
         }
-      
+
+
+        .profile-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .slick-initialized .slick-slide {
+            display: flex;
+        }
+
+        .category-name {
+            margin-top: 5px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
         .category-heading {
-          text-decoration: underline;
-          text-shadow: 2px 2px 2px rgba(255, 0, 0, 0.2);
+            text-decoration: underline;
+            text-align: center;
+            text-shadow: 2px 2px 2px rgba(97, 92, 92, 0.605);
         }
-      
+
         .profile-image {
-          width: 15%;
-          border-radius: 50%;
-          box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-          margin: 5px;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+            max-width: 100%;
+            /* Ensure images are responsive */
         }
-      </style>
-      
-      <script>
-        $(document).ready(function(){
-          $('[data-toggle="tooltip"]').tooltip();
+    </style>
+
+    <script>
+        $(document).ready(function() {
+            $('#categoryCarousel').slick({
+                slidesToShow: 5,
+                slidesToScroll: 3,
+                infinite: false,
+                draggable: true,
+                responsive: [{
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                        infinite: false
+                    }
+                }],
+                lazyLoad: 'ondemand',
+                speed: 500,
+            });
         });
-      </script>
-      
+    </script>
 </div>

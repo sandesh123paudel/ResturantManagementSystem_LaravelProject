@@ -152,7 +152,7 @@ class ProductController extends Controller
             'alert-type' => 'success',
         ];
     
-        return redirect()->route('admin.products')->with($notification);
+        return redirect()->back()->with($notification);
 
     
 

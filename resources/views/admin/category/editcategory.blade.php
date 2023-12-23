@@ -26,12 +26,11 @@
 
     <!-- Default box -->
     <div class="container-fluid">
-        <form method="POST" action={{ route('admin.updatecategory') }} enctype="multipart/form-data">
+        <form method="POST" action={{ url('admin/updatecategory/' . $category->id) }} enctype="multipart/form-data">
 
             @csrf
         
-            <input type="hidden" name="id" value="{{ $category->id }}">
-            
+            @method('PUT')
             <div class="card">
                 <div class="card-body">	
                     <div class="row">

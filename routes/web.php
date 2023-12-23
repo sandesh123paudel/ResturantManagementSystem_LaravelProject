@@ -23,7 +23,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::controller(CategoryController::class)->group(function(){
+    Route::get('/','ViewCategoryHome');
 
+});
 
 
 Route::get('/welcome', function () {
@@ -31,16 +34,9 @@ Route::get('/welcome', function () {
 });
 
 
-// Route::middleware(['auth','role:admin,user'])->group(function(){
-//     Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
-// });
-
-Route::middleware(['auth', 'role:admin'])->group(function () {
 
 
 
-
-});
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -53,8 +49,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('admin/addcategory', 'AddCategory')->name('admin.addcategory');
         Route::post('admin/storecategory', 'StoreCategory')->name('admin.storecategory');
         Route::get('admin/editcategory/{id}', 'EditCategory')->name('admin.editcategory');
-        Route::post('admin/updatecategory', 'UpdateCategory')->name('admin.updatecategory');
+        Route::put('admin/updatecategory/{id}', 'UpdateCategory');
         Route::get('admin/deletecategory/{id}', 'DeleteCategory')->name('admin.deletecategory');
+        
+
+
     });
 
     Route::controller(ProductController::class)->group(function () {
@@ -72,6 +71,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::controller(UserController::class)->group(function(){
         Route::get('admin/users','Users')->name('admin.users');
+        Route::get('admin/addusers','AddUsers')->name('admin.addusers');
+        Route::post('admin/storeusers', 'StoreUsers')->name('admin.storeusers');
+        Route::get('admin/edituser/{id}','EditUser');
+        Route::put('admin/updateuser/{id}','UpdateUser');
+        Route::get('admin/deleteuser/{id}', 'DeleteUser')->name('admin.deleteuser');
+
 
     });
 

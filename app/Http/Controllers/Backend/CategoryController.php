@@ -19,6 +19,14 @@ class CategoryController extends Controller
         return view('admin.category.category', compact('category'));
     }
 
+    public function ViewCategoryHome()
+    {
+        $viewcategories = Category::all();
+    
+        return view('home', compact('viewcategories'));
+
+    }
+
 
     public function AddCategory()
     {
@@ -67,16 +75,16 @@ class CategoryController extends Controller
 
 
 
-    public function UpdateCategory(Request $request)
+    public function UpdateCategory(Request $request,$id)
     {
-        $pid = $request->id;
+        
 
         $request->validate([
-            'name' => 'required|unique:categories,name,' . $pid . '|max:20',
+            'name' => 'required|unique:categories,name,' . $id . '|max:20',
             'category_icon' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file types and size as needed
         ]);
 
-        $category = Category::findOrFail($pid);
+        $category = Category::findOrFail($id);
 
         // Handle file upload
         if ($request->hasFile('category_icon')) {
