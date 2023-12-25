@@ -34,9 +34,13 @@ Route::controller(ProductController::class)->group(function(){
 });
 
 Route::controller(ProductController::class)->group(function(){
-    Route::get('/product-sort','SortProducts')->name('products.sort');
+    Route::get('/menu', 'searchSort')->name('products.searchSort');
+
 
 });
+
+
+
 
 
 
