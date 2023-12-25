@@ -28,6 +28,12 @@ Route::controller(CategoryController::class)->group(function(){
 
 });
 
+Route::controller(ProductController::class)->group(function(){
+    Route::get('/menu','ViewProduct');
+
+});
+
+
 
 Route::get('/welcome', function () {
     return view('home');
@@ -79,6 +85,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 
     });
+
 
 
 

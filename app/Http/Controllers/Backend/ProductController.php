@@ -17,9 +17,18 @@ class ProductController extends Controller
     {
 
 
-        $products = Product::with('category')->orderBy('created_at', 'desc')->paginate(5);
+        $products = Product::with('category')->orderBy('created_at', 'desc')->paginate(10);
 
         return view('admin.products.products', compact('products'));
+
+    }
+
+    public function ViewProduct()
+    {
+        $viewproducts = Product::all();
+        $categories = Category::all();
+    
+        return view('allproducts', compact('viewproducts','categories'));
 
     }
 

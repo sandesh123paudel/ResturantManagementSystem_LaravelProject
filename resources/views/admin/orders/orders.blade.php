@@ -62,7 +62,7 @@
                             <td>example@example.com</td>
                             <td>12345678</td>
                             <td>
-                                <span class="badge bg-success">Delivered</span>
+                                <span class="badge bg-red">Cancelled</span>
                             </td>
                             <td>$400</td>
                             <td>Nov 20, 2022</td>																				

@@ -1,0 +1,90 @@
+
+    .blog-sidebar-title {
+        color: #242424;
+        font-family: 'Kanit', sans-serif;
+        font-size: 25px;
+        font-weight: 900;
+    }
+
+    .blog-sidebar-list {
+        color: #242424;
+        font-family: 'Kanit', sans-serif;
+        font-size: 14px;
+        font-weight: 900;
+    }
+
+    .blog-sidebar-text {
+        color: #242424;
+        font-family: 'Kanit', sans-serif;
+        font-size: 16px;
+        font-weight: 200;
+    }
+
+    .blog-form {
+        background-color: #f8f9fa;
+        padding: 50px;
+        height: 1000px;
+    }
+
+    .list-icon {
+
+        color: #c0aa83;
+
+    }
+
+
+
+
+    .product-sidebar-list {
+        color: #242424;
+    }
+
+    .product-sidebar-list:hover {
+        color: #c0aa83;
+    }
+
+    .card-title {
+        color: #c0aa83;
+        font-family: 'Kanit', sans-serif;
+        font-size: 25px;
+        font-weight: 900;
+    }
+
+    .card-text {
+        font-family: 'Kanit', sans-serif;
+        font-size: 13px;
+    }
+
+    .price-tag {
+        color: chocolate;
+        font-family: 'Kanit', sans-serif;
+        font-size: px;
+        font-weight: 900;
+    }
+
+   
+
+    .button-text {
+        font-family: 'Kanit', sans-serif;
+        font-size: 14px;
+        font-weight: 900;
+    }
+
+    .product-image {
+        width: 200px;
+        height: 200px;
+        border-radius: 10px;
+    }
+
+    .card {
+        margin-top: 10px;
+        border-radius:10px;
+    }
+
+    .product-image:hover {
+        transform: scale(1.025);
+        /* Adjust the scale factor as needed */
+        transition: transform 0.3s ease-in-out;
+        /* Adjust the transition duration as needed */
+    }
+

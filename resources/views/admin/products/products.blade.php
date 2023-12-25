@@ -5,7 +5,7 @@
         <div class="container-fluid my-2">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Products</h1>
+                    <h1>Foods</h1>
                 </div>
                 <div class="col-sm-6 text-right">
                     <a href={{ route('admin.addproducts') }} class="btn btn-primary">New Product</a>
@@ -37,8 +37,8 @@
                         <thead>
                             <tr>
                                 <th width="60">ID</th>
-                                <th>Product Image</th>
-                                <th>Product</th>
+                                <th>Food Image</th>
+                                <th>Food Item</th>
                                 <th>Price</th>
                                 <th>Item</th>
                                 <th>Category</th>
@@ -59,7 +59,7 @@
                                         @endif
                                     </td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->price }}</td>
+                                    <td>Rs.{{ $item->price }}</td>
                                     <td>{{ $item->item }}</td>
                                     <td>{{ $item->category->name }}</td>
 

@@ -1,6 +1,6 @@
-<header>
+
   
-  <div class="nav-section main-menu navbar-light bg-green header ">
+  <div class="nav-section main-menu navbar-light bg-light header ">
     <div class="container ">
       
         <nav class="navbar navbar-expand-lg ">
@@ -13,12 +13,7 @@
           </button>
         
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                  Search
-              </button>
-          </form>
+           <h2>Silver Point Restaurant</h2>
 
             <div class="ml-auto">
               <ul class="navbar-nav">
@@ -26,7 +21,7 @@
                   <a class="nav-link" href="/" style="color: black;">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/" style="color: black;">Menu</a>
+                  <a class="nav-link" href="/menu" style="color: black;">Menu</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/" style="color: black;">Orders</a>
@@ -82,10 +77,4 @@
 
 
 
-</header>
 
-<style>
-  header{
-    background-color: #6bed85;
-  }
-</style>
