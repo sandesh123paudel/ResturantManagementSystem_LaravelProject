@@ -37,39 +37,42 @@
                 <!--END  <div class="col-lg-3 blog-form">-->
 
                 <div class="col-lg-9" style="padding-left: 30px;">
-                    <div class="row">
-
-                        <div class="col">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="basic-addon2">
-                                        <i class="fas fa-search"></i>
-                                    </span>
+                    <form id="sortForm" action="{{ route('products.sort') }}" method="GET">
+                        @csrf
+                    
+                        <div class="row">
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon2">
+                                            <i class="fas fa-search"></i>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
+                    
+                            <div class="col">
+                                <select class="form-control" id="sort" name="sort" onchange="submitForm()">
+                                    <option value="">Default Sorting</option>
+                                    <option value="desc">Sorting by High-Low Price</option>
+                                    <option value="asc">Sorting by Low-High Price</option>
+                                    <option value="latest">Sorting by Latest Item</option>
+                                    <option value="oldest">Sorting by Oldest Item</option>
+                                </select>
+                            </div>
                         </div>
-                        
-                        
-
-
-
-                        <div class="col">
-                            <select class="form-control">
-                                <option value="">Default Sorting</option>
-                                <option value="popularity">Sorting by High-Low Price</option>
-                                <option value="average">Sorting by Low-High Price</option>
-                                <option value="average">Sorting by Latest Item</option>
-
-
-                            </select>
-                        </div>
-
-                    </div>
+                    </form>
+                    
+                    <script>
+                        function submitForm() {
+                            document.getElementById('sortForm').submit();
+                        }
+                    </script>
+                    
+                    
                     <!-- Sorting by <div class="row"> -->
-                    <div>&nbsp;</div>
-                    <div>&nbsp;</div>
-
+                   
                     <div class="row">
                         @foreach ($viewproducts as $product)
                             <div class="col-sm-3 col-md-7 col-lg-4">
@@ -101,3 +104,8 @@
 @endsection
 
 
+<script>
+    document.getElementById('sort').addEventListener('change', function() {
+        document.getElementById('sortForm').submit();
+    });
+</script>

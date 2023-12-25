@@ -25,12 +25,32 @@ class ProductController extends Controller
 
     public function ViewProduct()
     {
-        $viewproducts = Product::all();
+        $viewproducts = Product::take(10)->get(); // Replace 10 with the number of products you want to display
+
         $categories = Category::all();
-    
-        return view('allproducts', compact('viewproducts','categories'));
+
+        return view('allproducts', compact('viewproducts', 'categories'));
 
     }
+    // In your controller
+    public function SortProducts(Request $request)
+{
+    $sortOption = $request->input('sort');
+
+    $categories = Category::all();
+
+    if ($sortOption == 'latest') {
+        $viewproducts = Product::orderBy('created_at', 'desc')->get();
+    } elseif ($sortOption == 'oldest') {
+        $viewproducts = Product::orderBy('created_at', 'asc')->get();
+    } else {
+        // Default sorting by price
+        $viewproducts = Product::orderBy('price', $sortOption)->get();
+    }
+
+    return view('allproducts', compact('viewproducts', 'categories'));
+}
+
 
     public function AddProducts()
     {
@@ -94,7 +114,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $categories = Category::all();
-        return view('admin.products.editproduct',compact('product','categories'));
+        return view('admin.products.editproduct', compact('product', 'categories'));
 
     }
 
@@ -109,47 +129,46 @@ class ProductController extends Controller
             'category' => 'required|exists:categories,id',
             'item' => 'required|in:veg,non-veg',
         ]);
-    
+
         // Retrieve the existing product
         $product = Product::findOrFail($id);
-    
+
         // Delete the old image if it exists
         if ($request->hasFile('image') && $product->product_image) {
             Storage::disk('public')->delete($product->product_image);
         }
-    
+
         // Update product information
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = $request->price;
         $product->category_id = $request->category;
         $product->item = $request->item;
-    
+
         // Update image if provided
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('product_images', 'public');
             $product->product_image = $imagePath;
         }
-    
+
         // Save changes to the database
         $product->update();
-    
+
         $notification = [
             'message' => 'Product " ' . $request->name . ' " Updated Successfully',
             'alert-type' => 'success',
         ];
-    
+
         return redirect()->route('admin.products')->with($notification);
     }
 
     public function DeleteProduct(Request $request)
     {
-        $id=$request->id;
+        $id = $request->id;
 
-        $product= Product::findOrFail($id);
+        $product = Product::findOrFail($id);
 
-        if($product->product_image)
-        {
+        if ($product->product_image) {
             Storage::disk('public')->delete($product->product_image);
 
         }
@@ -160,10 +179,10 @@ class ProductController extends Controller
             'message' => 'Product " ' . $product->name . ' " Deleted Successfully',
             'alert-type' => 'success',
         ];
-    
+
         return redirect()->back()->with($notification);
 
-    
+
 
     }
 
