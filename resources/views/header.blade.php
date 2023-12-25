@@ -13,7 +13,7 @@
           </button>
         
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-           <h2>Silver Point Restaurant</h2>
+           <h2 style="font-family: cursive">Silver Point Restaurant</h2>
 
             <div class="ml-auto">
               <ul class="navbar-nav">

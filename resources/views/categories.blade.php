@@ -9,9 +9,11 @@
     <div id="categoryCarousel" class="slick-carousel">
         @foreach ($viewcategories as $category)
             <div class="profile-content">
-                <img src="{{ asset('storage/' . $category->category_icon) }}"
+                <a style="text-decoration: none" href="{{ route('products.searchSort', ['category' => $category->id]) }}">
+                    <img src="{{ asset('storage/' . $category->category_icon) }}"
                     class="img-fluid rounded-circle profile-image" alt="Profile Image 1">
                 <p class="category-name " style="color: rgba(23, 10, 10, 0.729); ">{{ $category->name }}</p>
+                </a>
 
             </div>
         @endforeach

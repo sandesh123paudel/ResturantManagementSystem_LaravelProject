@@ -33,60 +33,63 @@ class ProductController extends Controller
 
     }
 
-  // In your controller
-  public function searchSort(Request $request)
-  {
-      $searchQuery = $request->input('search');
-      $sortOption = $request->input('sort');
-      $foodType = $request->input('food_type');
-      $categoryId = $request->input('category');
-  
-      // Start with all products
-      $query = Product::query();
-  
-      // Apply search filter
-      if ($searchQuery) {
-          $query->where('name', 'like', '%' . $searchQuery . '%');
-      }
-  
-      // Apply category filter
-      if ($categoryId) {
-          $query->where('category_id', $categoryId);
-      }
-  
-      // Apply food type filter
-      if ($foodType) {
-          // Ensure the case is consistent (e.g., 'nonVeg' or 'Non-Veg')
-          $query->where('item', strtolower($foodType));
-      }
-  
-      // Apply sorting
-      if ($sortOption == 'latest') {
-          $query->orderBy('created_at', 'desc');
-      } elseif ($sortOption == 'oldest') {
-          $query->orderBy('created_at', 'asc');
-      } else {
-          // Default sorting by price
-          // Ensure that $sortOption is either "asc" or "desc"
-          $query->orderBy('price', $sortOption === 'asc' ? 'asc' : 'desc');
-      }
-  
-      // Get the filtered products
-      $viewproducts = $query->get();
-  
-      // You can add additional logic or filters here as needed
-  
-      $categories = Category::all(); // Assuming you have a Category model
-  
-      if ($viewproducts->isEmpty()) {
-          // If no products found, return a message
-          return view('allproducts', compact('categories','viewproducts'))->withErrors([]);
-      }
-  
-      // If products are found, return the view with the products
-      return view('allproducts', compact('viewproducts', 'categories'));
-  }
-  
+    // In your controller
+    public function searchSort(Request $request)
+    {
+        $searchQuery = $request->input('search');
+        $sortOption = $request->input('sort');
+        $foodType = $request->input('food_type');
+        $categoryId = $request->input('category');
+
+        // Start with all products
+        $query = Product::query();
+
+        // Apply search filter
+        if ($searchQuery) {
+            $query->where('name', 'like', '%' . $searchQuery . '%');
+        }
+
+        // Apply category filter
+        if ($categoryId) {
+            $query->where('category_id', $categoryId);
+        }
+
+        // Apply food type filter
+        if ($foodType) {
+            // Ensure the case is consistent (e.g., 'nonVeg' or 'Non-Veg')
+            $query->where('item', strtolower($foodType));
+        }
+
+        // Apply sorting
+        // Apply sorting
+        if ($sortOption == 'latest') {
+            $query->orderBy('created_at', 'desc');
+        } elseif ($sortOption == 'oldest') {
+            $query->orderBy('created_at', 'asc');
+        } elseif ($sortOption == 'asc' || $sortOption == 'desc') {
+            // Sorting by price
+            $query->orderBy('price', $sortOption);
+        } else {
+            // Default sorting by price in ascending order
+            $query->orderBy('price', 'asc');
+        }
+
+        // Get the filtered products
+        $viewproducts = $query->get();
+
+        // You can add additional logic or filters here as needed
+
+        $categories = Category::all(); // Assuming you have a Category model
+
+        if ($viewproducts->isEmpty()) {
+            // If no products found, return a message
+            return view('allproducts', compact('categories', 'viewproducts'))->withErrors([]);
+        }
+
+        // If products are found, return the view with the products
+        return view('allproducts', compact('viewproducts', 'categories', 'searchQuery'));
+    }
+
 
 
 

@@ -40,7 +40,7 @@ function submitForm() {
 
     // Use AJAX to submit the form
     $.ajax({
-        url: '{{ route('products.searchSort')}}', // Adjust the route name
+        url: "{{ route('products.searchSort')}}", // Adjust the route name
         type: 'GET',
         data: formData,
         success: function(data) {

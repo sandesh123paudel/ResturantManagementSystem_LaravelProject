@@ -1,10 +1,8 @@
 @extends('master')
 
 @section('content')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-        integrity="sha384-wvfXpqpZZVQGK6TAh5PldpV/HzfhQa8Q1rUFO8wA+3I1E/ApGgAOl9xXbe5B9vZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <section class="page-section">
         <div class="container mt-5">
@@ -32,7 +30,7 @@
                     @foreach ($categories as $category)
                         <p class="blog-sidebar-list">
                             <a href="{{ route('products.searchSort', ['category' => $category->id]) }}"
-                                style="color: inherit; text-decoration: none;">
+                                style="color: chocolate; text-decoration: none;">
                                 <b><span class="list-icon"> > </span> {{ $category->name }}</b>
                             </a>
                         </p>
@@ -56,11 +54,18 @@
 
                 <div class="col-lg-9" style="padding-left: 30px;">
 
-                    <!-- Include jQuery -->
+
+
+                    <!-- Display the search query at the top -->
+
+
 
 
                     <!-- Update your view -->
                     <div class="row">
+                        
+
+
                         <form id="searchSortForm" action="{{ route('products.searchSort') }}" method="GET"
                             class="form-inline">
                             <div class="form-group">
@@ -83,12 +88,14 @@
                                 <label class="mr-2">Type:</label>
                                 <select class="form-control" id="foodType" name="food_type">
                                     <option value="" {{ request('food_type') === '' ? 'selected' : '' }}>All</option>
-                                    <option value="veg" {{ request('food_type') === 'veg' ? 'selected' : '' }}>Veg</option>
-                                    <option value="non-veg" {{ request('food_type') === 'nonVeg' ? 'selected' : '' }}>Non-Veg</option>
+                                    <option value="veg" {{ request('food_type') === 'veg' ? 'selected' : '' }}>Veg
+                                    </option>
+                                    <option value="non-veg" {{ request('food_type') === 'nonVeg' ? 'selected' : '' }}>
+                                        Non-Veg</option>
                                 </select>
-                                
+
                             </div>
-                    
+
 
                             <!-- Add a hidden input field for the category ID -->
                             <input type="hidden" id="category" name="category" value="{{ request('category') }}">
@@ -104,28 +111,23 @@
 
 
                     <script>
-                       $(document).ready(function() {
-    $('.category-link').click(function(e) {
-        // No AJAX here, just let the form submit normally
-    });
+                        $(document).ready(function() {
+                            $('.category-link').click(function(e) {
 
-    function resetForm() {
-        // Reset form fields
-        $('#search, #sort, #category, #foodType').val('');
+                            });
 
-        // Submit the form
-        $('#searchSortForm').submit();
-    }
+                            function resetForm() {
+                                // Reset form fields
+                                $('#search, #sort, #category, #foodType').val('');
 
-    $('#resetButton').click(function() {
-        resetForm();
-    });
-});
+                                // Submit the form
+                                $('#searchSortForm').submit();
+                            }
 
-function submitForm() {
-    // No AJAX here, just let the form submit normally
-}
-
+                            $('#resetButton').click(function() {
+                                resetForm();
+                            });
+                        });
                     </script>
 
 
@@ -141,30 +143,27 @@ function submitForm() {
 
 
 
-
-<div class="row">
-    @forelse ($viewproducts as $product)
-        <div class="col-sm-3 col-md-7 col-lg-4">
-            <div class="card">
-                <div class="card-body text-center">
-                    <img src="{{ asset('storage/' . $product->product_image) }}" class="product-image">
-                    <h5 class="card-title"><b>{{ $product->name }}</b></h5>
-                    <p class="card-text small">{{ $product->description }}</p>
-                    <p class="price-tag"> Rs.{{ $product->price }}</p>
-                    <a href="" target="_blank" class="btn btn-secondary button-text">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart
-                    </a>
-                </div>
-            </div>
-        </div>
-    @empty
-        <div class="col-12 text-center">
-            <p>No products found. Try another one</p>
-        </div>
-    @endforelse
-
-  
-</div>
+                    <div class="row">
+                        @forelse ($viewproducts as $product)
+                            <div class="col-sm-3 col-md-7 col-lg-4">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <img src="{{ asset('storage/' . $product->product_image) }}" class="product-image">
+                                        <h5 class="card-title"><b>{{ $product->name }}</b></h5>
+                                        <p class="card-text small">{{ $product->description }}</p>
+                                        <p class="price-tag"> Rs.{{ $product->price }}</p>
+                                        <a href="" target="_blank" class="btn btn-secondary button-text">
+                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <div class="col-12 text-center mt-5">
+                                <p>No products found. Try searching another one</p>
+                            </div>
+                        @endforelse
+                    </div>
 
 
 
@@ -175,10 +174,3 @@ function submitForm() {
         </div>
     </section>
 @endsection
-
-
-<script>
-    document.getElementById('sort').addEventListener('change', function() {
-        document.getElementById('sortForm').submit();
-    });
-</script>
