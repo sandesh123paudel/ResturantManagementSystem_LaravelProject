@@ -29,6 +29,16 @@
 .product-sidebar-list:hover {
     color: #c0aa83;
 }
+/* Add this to your existing CSS */
+.description-limit {
+    max-height: 60px; /* Set the maximum height for the description */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Adjust the number of lines to display */
+    -webkit-box-orient: vertical;
+}
+
 
 .card-title {
     color: #bf9d61;
@@ -53,9 +63,8 @@
 }
 
 .product-image {
-    width: 100%; /* Adjust to fit container width */
-    max-width: 100%; /* Set a maximum width */
-    height: auto; /* Maintain aspect ratio */
+    width: 200px; /* Adjust to fit container width */
+   height: 200px;
     border-radius: 10px;
 }
 

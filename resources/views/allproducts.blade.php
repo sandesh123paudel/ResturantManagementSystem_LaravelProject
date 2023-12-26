@@ -1,9 +1,6 @@
 @extends('master')
 
 @section('content')
-
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
     <section class="page-section">
         <div class="container mt-5">
             <div class="row">
@@ -19,14 +16,7 @@
                     <hr />
 
 
-                    <!-- Update your view -->
-                    <!-- Add this inside the loop where you display categories -->
 
-                    <!-- Include jQuery at the top of your HTML -->
-
-
-                    <!-- Update your view to include data-category attribute -->
-                    <!-- Update your view to use anchor tags with href -->
                     @foreach ($categories as $category)
                         <p class="blog-sidebar-list">
                             <a href="{{ route('products.searchSort', ['category' => $category->id]) }}"
@@ -63,47 +53,70 @@
 
                     <!-- Update your view -->
                     <div class="row">
-                        
+
+                        <div class="mt-3" id="searchResults">
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <p class="mb-0">
+                                        @if (isset($searchQuery))
+                                            Search results for: <strong>"{{ $searchQuery }}"</strong>
+                                        @else
+                                            Showing all products
+                                        @endif
+                                    </p>
+                                    <button type="button" class="btn btn-secondary btn-sm mb-2 ml-3" id="resetButton"
+                                        style="max-width: 100px;">Clear</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                         <form id="searchSortForm" action="{{ route('products.searchSort') }}" method="GET"
                             class="form-inline">
                             <div class="form-group">
                                 <label for="search" class="sr-only">Search</label>
-                                <input type="text" class="form-control" id="search" name="search"
-                                    placeholder="Search" value="{{ request('search') }}">
+                                <input type="text" class="form-control" id="search" name="search" placeholder="Search" value="{{ request('search') }}">
                             </div>
-
+                            <button type="submit" class="btn btn-secondary ml-2">Search</button>
+                            
                             <div class="form-group mx-2">
                                 <label for="sort" class="sr-only">Sort</label>
                                 <select class="form-control" id="sort" name="sort">
-                                    <option value="">Default Sorting</option>
-                                    <option value="desc">Sorting by High-Low Price</option>
-                                    <option value="asc">Sorting by Low-High Price</option>
-                                    <option value="latest">Sorting by Latest Item</option>
-                                    <option value="oldest">Sorting by Oldest Item</option>
+                                    <option value="" selected>Sort</option>
+                                    <option value="desc">Sort Price(high-low)</option>
+                                    <option value="asc">Sort Price(low-high)</option>
+                                    <option value="latest">Sort Newest Product</option>
+                                    <option value="oldest">Sort Oldest Product</option>
                                 </select>
                             </div>
+                            
                             <div class="form-group mx-2">
                                 <label class="mr-2">Type:</label>
                                 <select class="form-control" id="foodType" name="food_type">
                                     <option value="" {{ request('food_type') === '' ? 'selected' : '' }}>All</option>
-                                    <option value="veg" {{ request('food_type') === 'veg' ? 'selected' : '' }}>Veg
-                                    </option>
-                                    <option value="non-veg" {{ request('food_type') === 'nonVeg' ? 'selected' : '' }}>
-                                        Non-Veg</option>
+                                    <option value="veg" {{ request('food_type') === 'veg' ? 'selected' : '' }}>Veg</option>
+                                    <option value="non-veg" {{ request('food_type') === 'nonVeg' ? 'selected' : '' }}>Non-Veg</option>
                                 </select>
-
                             </div>
+                            
 
 
                             <!-- Add a hidden input field for the category ID -->
                             <input type="hidden" id="category" name="category" value="{{ request('category') }}">
 
-                            <button type="submit" class="btn btn-secondary">Submit</button>
 
-                            <!-- Update your view -->
-                            <button type="button" class="btn btn-secondary ml-2" id="resetButton">Reset</button>
 
 
                         </form>
@@ -111,6 +124,9 @@
 
 
                     <script>
+                        $('#sort, #foodType').change(function() {
+                            $('#searchSortForm').submit();
+                        });
                         $(document).ready(function() {
                             $('.category-link').click(function(e) {
 
@@ -127,6 +143,27 @@
                             $('#resetButton').click(function() {
                                 resetForm();
                             });
+                        });
+
+                        $(document).ready(function() {
+                            // Initial visibility based on searchQuery
+                            toggleShowingAllProducts();
+
+                            $('#resetButton').click(function() {
+                                // Simulate clearing the search query
+                                $('#search').val('');
+                                // Toggle visibility after clearing the search query
+                                toggleShowingAllProducts();
+                            });
+
+                            function toggleShowingAllProducts() {
+                                var hasSearchQuery = '{{ isset($searchQuery) }}';
+                                if (hasSearchQuery) {
+                                    $('#searchResults').show();
+                                } else {
+                                    $('#searchResults').hide();
+                                }
+                            }
                         });
                     </script>
 
@@ -145,12 +182,14 @@
 
                     <div class="row">
                         @forelse ($viewproducts as $product)
-                            <div class="col-sm-3 col-md-7 col-lg-4">
+                            <div class="col-sm-3 col-md-2 col-lg-4">
                                 <div class="card">
                                     <div class="card-body text-center">
-                                        <img src="{{ asset('storage/' . $product->product_image) }}" class="product-image">
+                                        <a href="#" data-toggle="modal" data-target="#productModal{{$product->id}}">
+                                            <img src="{{ asset('storage/' . $product->product_image) }}" class="product-image">
+                                        </a>
                                         <h5 class="card-title"><b>{{ $product->name }}</b></h5>
-                                        <p class="card-text small">{{ $product->description }}</p>
+                                        <p class="card-text small description-limit">{{ $product->description }}</p>
                                         <p class="price-tag"> Rs.{{ $product->price }}</p>
                                         <a href="" target="_blank" class="btn btn-secondary button-text">
                                             <i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart
@@ -158,10 +197,34 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="modal fade" id="productModal{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="productModalLabel{{$product->id}}" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="productModalLabel{{$product->id}}">{{$product->name}}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Display full product details here -->
+                                            <img src="{{ asset('storage/' . $product->product_image) }}" class="img-fluid" alt="Product Image">
+                                            <p style="font-weight: 800">{{ $product->description }}</p>
+                                            <p style="color: chocolate; font-weight: 800"">Price: Rs.{{ $product->price }}</p>
+                                            <!-- Add more details as needed -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
                         @empty
                             <div class="col-12 text-center mt-5">
                                 <p>No products found. Try searching another one</p>
                             </div>
+
+
+                            
                         @endforelse
                     </div>
 

@@ -19,13 +19,7 @@ class CategoryController extends Controller
         return view('admin.category.category', compact('category'));
     }
 
-    public function ViewCategoryHome()
-    {
-        $viewcategories = Category::all();
     
-        return view('home', compact('viewcategories'));
-
-    }
 
 
     public function AddCategory()

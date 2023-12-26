@@ -5,7 +5,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
 <div class="container mt-4 mb-4">
-    <h3 class="category-heading">Our Categories</h3>
+    <h3 class="category-heading">Our Specialities</h3>
     <div id="categoryCarousel" class="slick-carousel">
         @foreach ($viewcategories as $category)
             <div class="profile-content">

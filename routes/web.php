@@ -6,6 +6,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\FrontEnd\MenuController;
+use App\Http\Controllers\FrontEnd\HomePageController;
+
+
 
 
 /*
@@ -23,17 +27,17 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::controller(CategoryController::class)->group(function(){
+Route::controller(HomePageController::class)->group(function(){
     Route::get('/','ViewCategoryHome');
 
 });
 
-Route::controller(ProductController::class)->group(function(){
+Route::controller(MenuController::class)->group(function(){
     Route::get('/menu','ViewProduct');
 
 });
 
-Route::controller(ProductController::class)->group(function(){
+Route::controller(MenuController::class)->group(function(){
     Route::get('/menu', 'searchSort')->name('products.searchSort');
 
 
