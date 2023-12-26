@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
 
     <!-- jQuery -->
+
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <!-- Bootstrap JS -->
@@ -32,6 +33,7 @@
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>

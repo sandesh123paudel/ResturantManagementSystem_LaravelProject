@@ -34,9 +34,9 @@
                         <div class="modal-body">
                             <!-- Display full product details here -->
                             <img src="{{ asset('storage/' . $product->product_image) }}" class="img-fluid" alt="Product Image">
-                            <p style="font-weight: 800">{{ $product->description }}</p>
+                            <p style="font-weight: 500">{{ $product->description }}</p>
                             <p style="color: chocolate; font-weight: 800"">Price: Rs.{{ $product->price }}</p>
-                            <!-- Add more details as needed -->
+                            
                         </div>
                     </div>
                 </div>

@@ -36,8 +36,23 @@
                     <h2 class="blog-sidebar-title"><b>Filter</b></h2>
                     <hr />
 
-                    <p class="tags">Price $4 - $25</p>
-                    <button type="button" class="btn btn-dark btn-lg">Filter</button>
+                    <form action="{{ route('products.searchSort') }}" method="get">
+                        <div class="form-group">
+                            <label for="minPrice">Min Price:</label>
+                            <input type="number" class="form-control" id="minPrice" name="min_price"
+                                placeholder="Enter Min Price" value="{{ request('min_price') }}" step="1">
+                        </div>
+                    
+                        <div class="form-group">
+                            <label for="maxPrice">Max Price:</label>
+                            <input type="number" class="form-control" id="maxPrice" name="max_price"
+                                placeholder="Enter Max Price" value="{{ request('max_price') }}" step="1">
+                        </div>
+                    
+                        <button type="submit" class="btn btn-dark btn-lg">Filter</button>
+                    </form>
+                    
+
 
                 </div>
                 <!--END  <div class="col-lg-3 blog-form">-->
@@ -87,10 +102,11 @@
                             class="form-inline">
                             <div class="form-group">
                                 <label for="search" class="sr-only">Search</label>
-                                <input type="text" class="form-control" id="search" name="search" placeholder="Search" value="{{ request('search') }}">
+                                <input type="text" class="form-control" id="search" name="search"
+                                    placeholder="Search" value="{{ request('search') }}">
                             </div>
                             <button type="submit" class="btn btn-secondary ml-2">Search</button>
-                            
+
                             <div class="form-group mx-2">
                                 <label for="sort" class="sr-only">Sort</label>
                                 <select class="form-control" id="sort" name="sort">
@@ -101,16 +117,18 @@
                                     <option value="oldest">Sort Oldest Product</option>
                                 </select>
                             </div>
-                            
+
                             <div class="form-group mx-2">
                                 <label class="mr-2">Type:</label>
                                 <select class="form-control" id="foodType" name="food_type">
                                     <option value="" {{ request('food_type') === '' ? 'selected' : '' }}>All</option>
-                                    <option value="veg" {{ request('food_type') === 'veg' ? 'selected' : '' }}>Veg</option>
-                                    <option value="non-veg" {{ request('food_type') === 'nonVeg' ? 'selected' : '' }}>Non-Veg</option>
+                                    <option value="veg" {{ request('food_type') === 'veg' ? 'selected' : '' }}>Veg
+                                    </option>
+                                    <option value="non-veg" {{ request('food_type') === 'nonVeg' ? 'selected' : '' }}>
+                                        Non-Veg</option>
                                 </select>
                             </div>
-                            
+
 
 
                             <!-- Add a hidden input field for the category ID -->
@@ -185,8 +203,10 @@
                             <div class="col-sm-3 col-md-2 col-lg-4">
                                 <div class="card">
                                     <div class="card-body text-center">
-                                        <a href="#" data-toggle="modal" data-target="#productModal{{$product->id}}">
-                                            <img src="{{ asset('storage/' . $product->product_image) }}" class="product-image">
+                                        <a href="#" data-toggle="modal"
+                                            data-target="#productModal{{ $product->id }}">
+                                            <img src="{{ asset('storage/' . $product->product_image) }}"
+                                                class="product-image">
                                         </a>
                                         <h5 class="card-title"><b>{{ $product->name }}</b></h5>
                                         <p class="card-text small description-limit">{{ $product->description }}</p>
@@ -197,36 +217,52 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal fade" id="productModal{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="productModalLabel{{$product->id}}" aria-hidden="true">
+                            <div class="modal fade" id="productModal{{ $product->id }}" tabindex="-1" role="dialog"
+                                aria-labelledby="productModalLabel{{ $product->id }}" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="productModalLabel{{$product->id}}">{{$product->name}}</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <h5 class="modal-title" id="productModalLabel{{ $product->id }}">
+                                                {{ $product->name }}</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
                                             <!-- Display full product details here -->
-                                            <img src="{{ asset('storage/' . $product->product_image) }}" class="img-fluid" alt="Product Image">
-                                            <p style="font-weight: 800">{{ $product->description }}</p>
-                                            <p style="color: chocolate; font-weight: 800"">Price: Rs.{{ $product->price }}</p>
+                                            <img src="{{ asset('storage/' . $product->product_image) }}"
+                                                class="img-fluid" alt="Product Image">
+                                            <p style="font-weight: 500">{{ $product->description }}</p>
+                                            <p style="color: chocolate; font-weight: 800"">Price: Rs.{{ $product->price }}
+                                            </p>
                                             <!-- Add more details as needed -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            
+
                         @empty
                             <div class="col-12 text-center mt-5">
                                 <p>No products found. Try searching another one</p>
                             </div>
-
-
-                            
                         @endforelse
                     </div>
+                    <div class="d-flex justify-content-end">
+                        <div class="pagination">
+                            {{ $viewproducts->appends([
+                                    'sort' => $sortOption,
+                                    'search' => $searchQuery,
+                                    'food_type' => $foodType,
+                                    'category' => $categoryId,
+                                ])->links() }}
+
+
+                        </div>
+                    </div>
+
+                   
 
 
 

@@ -15,6 +15,8 @@ class MenuController extends Controller
         $sortOption = $request->input('sort');
         $foodType = $request->input('food_type');
         $categoryId = $request->input('category');
+        $minPrice = $request->input('min_price');
+        $maxPrice = $request->input('max_price');
 
         // Start with all products
         $query = Product::query();
@@ -31,11 +33,14 @@ class MenuController extends Controller
 
         // Apply food type filter
         if ($foodType) {
-            
+
             $query->where('item', strtolower($foodType));
         }
+        if ($minPrice && $maxPrice) {
+            $query->whereBetween('price', [$minPrice, $maxPrice]);
+        }
 
-        
+
         if ($sortOption == 'latest') {
             $query->orderBy('created_at', 'desc');
         } elseif ($sortOption == 'oldest') {
@@ -43,12 +48,16 @@ class MenuController extends Controller
         } elseif ($sortOption == 'asc' || $sortOption == 'desc') {
             // Sorting by price
             $query->orderBy('price', $sortOption);
+        }
+        if ($minPrice && $maxPrice) {
+            $query->whereBetween('price', [$minPrice, $maxPrice]);
         } else {
-            $query->orderBy('price', 'asc');
+            $query->inRandomOrder();
         }
 
-        // Get the filtered products
-        $viewproducts = $query->get();
+
+        $viewproducts = $query->paginate(18);
+
 
         // You can add additional logic or filters here as needed
 
@@ -56,16 +65,16 @@ class MenuController extends Controller
 
         if ($viewproducts->isEmpty()) {
             // If no products found, return a message
-            return view('allproducts', compact('categories', 'viewproducts'))->withErrors([]);
+            return view('allproducts', compact('categories', 'viewproducts','searchQuery', 'sortOption', 'foodType', 'categoryId'))->withErrors([]);
         }
 
 
 
         // If products are found, return the view with the products
-        return view('allproducts', compact('viewproducts', 'categories', 'searchQuery'));
+        return view('allproducts', compact('viewproducts', 'categories', 'searchQuery', 'sortOption', 'foodType', 'categoryId'));
     }
 
 
 
-   
+
 }

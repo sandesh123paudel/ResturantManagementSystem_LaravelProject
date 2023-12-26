@@ -70,7 +70,7 @@
 
 .card {
     margin-top: 10px;
-    border-radius: 20px;
+    border-radius: 10px;
     overflow: hidden; /* Ensure content does not overflow */
 }
 
@@ -95,4 +95,23 @@
     .product-image {
         border-radius: 0; /* Remove border-radius for smaller screens */
     }
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    /* Adjust the margin as needed */
+}
+
+.pagination .page-link {
+    color: grey;
+    /* Change to the desired color */
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #718694;
+    /* Change to the desired color */
+    border-color: #84949f;
+    /* Change to the desired color */
 }

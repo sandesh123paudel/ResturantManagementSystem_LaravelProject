@@ -54,7 +54,7 @@
                                             @if ($product->product_image)
                                                 <img src="{{ asset('storage/' . $product->product_image) }}"
                                                     alt="Product Image" style="max-width: 100px; max-height: 100px;">
-                                                    <p>{{$product->product_image}}</p>
+                                                    
                                             @else
                                                 <p>No image available</p>
                                             @endif
