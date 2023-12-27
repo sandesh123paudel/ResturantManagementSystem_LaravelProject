@@ -27,7 +27,7 @@
                     <a class="nav-link" href="/" style="color: black;">Orders</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/" style="color: black;">Contact Us</a>
+                    <a class="nav-link" href="/contact" style="color: black;">Contact Us</a>
                   </li>
             
                 </li>

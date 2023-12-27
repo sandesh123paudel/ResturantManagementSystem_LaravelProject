@@ -6,13 +6,8 @@
             <div class="row">
 
                 <div class="col-lg-3 blog-form">
-                    <h2 class="blog-sidebar-title"><b>Cart</b></h2>
-                    <hr />
-                    <p class="blog-sidebar-text">No products in the cart...</p>
-                    <div>&nbsp;</div>
-                    <div>&nbsp;</div>
-
-                    <h2 class="blog-sidebar-title"><b>Categories</b></h2>
+                    
+                    <h3 class="blog-sidebar-title"><b>Categories</b></h3>
                     <hr />
 
 
@@ -33,7 +28,7 @@
                     <div>&nbsp;</div>
                     <div>&nbsp;</div>
 
-                    <h2 class="blog-sidebar-title"><b>Filter</b></h2>
+                    <h3 class="blog-sidebar-title"><b>Filter</b></h3>
                     <hr />
 
                     <form action="{{ route('products.searchSort') }}" method="get">
@@ -42,26 +37,22 @@
                             <input type="number" class="form-control" id="minPrice" name="min_price"
                                 placeholder="Enter Min Price" value="{{ request('min_price') }}" step="1">
                         </div>
-                    
+
                         <div class="form-group">
                             <label for="maxPrice">Max Price:</label>
                             <input type="number" class="form-control" id="maxPrice" name="max_price"
                                 placeholder="Enter Max Price" value="{{ request('max_price') }}" step="1">
                         </div>
-                    
-                        <button type="submit" class="btn btn-dark btn-lg">Filter</button>
+
+                        <button type="submit" class="btn btn-dark btn-md">Filter</button>
                     </form>
-                    
+
 
 
                 </div>
                 <!--END  <div class="col-lg-3 blog-form">-->
 
                 <div class="col-lg-9" style="padding-left: 30px;">
-
-
-
-                    <!-- Display the search query at the top -->
 
 
 
@@ -139,6 +130,8 @@
 
                         </form>
                     </div>
+                    <p class="text-right mt-4">Showing {{ $viewproducts->firstItem() }} - {{ $viewproducts->lastItem() }} of {{ $viewproducts->total() }} results</p>
+
 
 
                     <script>
@@ -199,6 +192,7 @@
 
 
                     <div class="row">
+
                         @forelse ($viewproducts as $product)
                             <div class="col-sm-3 col-md-2 col-lg-4">
                                 <div class="card">
@@ -250,19 +244,20 @@
                         @endforelse
                     </div>
                     <div class="d-flex justify-content-end">
+
                         <div class="pagination">
                             {{ $viewproducts->appends([
                                     'sort' => $sortOption,
                                     'search' => $searchQuery,
                                     'food_type' => $foodType,
                                     'category' => $categoryId,
-                                ])->links() }}
+                                ])->links('') }}
 
 
                         </div>
                     </div>
 
-                   
+
 
 
 

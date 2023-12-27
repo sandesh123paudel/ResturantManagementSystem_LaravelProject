@@ -52,7 +52,7 @@ class MenuController extends Controller
         if ($minPrice && $maxPrice) {
             $query->whereBetween('price', [$minPrice, $maxPrice]);
         } else {
-            $query->inRandomOrder();
+            $query->orderBy('price','asc');
         }
 
 

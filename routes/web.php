@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\FrontEnd\MenuController;
 use App\Http\Controllers\FrontEnd\HomePageController;
+use App\Http\Controllers\Mail\ContactController;
 
 
 
@@ -26,6 +27,18 @@ use App\Http\Controllers\FrontEnd\HomePageController;
 Route::get('/', function () {
     return view('home');
 });
+
+Route::get('/contact',function(){
+    return view('contactus.contactus');
+
+});
+
+
+Route::controller(ContactController::class)->group(function(){
+    Route::post('/contact/submit', 'submitContactForm')->name('contact.submit');
+
+});
+
 
 Route::controller(HomePageController::class)->group(function(){
     Route::get('/','ViewCategoryHome');
