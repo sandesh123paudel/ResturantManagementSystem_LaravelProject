@@ -6,7 +6,7 @@
             <div class="row">
 
                 <div class="col-lg-3 blog-form">
-                    
+
                     <h3 class="blog-sidebar-title"><b>Categories</b></h3>
                     <hr />
 
@@ -34,13 +34,13 @@
                     <form action="{{ route('products.searchSort') }}" method="get">
                         <div class="form-group">
                             <label for="minPrice">Min Price:</label>
-                            <input type="number" class="form-control" id="minPrice" name="min_price"
+                            <input type="number" class="form-control" id="minPrice" name="min_price" min="1"
                                 placeholder="Enter Min Price" value="{{ request('min_price') }}" step="1">
                         </div>
 
                         <div class="form-group">
                             <label for="maxPrice">Max Price:</label>
-                            <input type="number" class="form-control" id="maxPrice" name="max_price"
+                            <input type="number" class="form-control" id="maxPrice" name="max_price" min="1"
                                 placeholder="Enter Max Price" value="{{ request('max_price') }}" step="1">
                         </div>
 
@@ -130,7 +130,8 @@
 
                         </form>
                     </div>
-                    <p class="text-right mt-4">Showing {{ $viewproducts->firstItem() }} - {{ $viewproducts->lastItem() }} of {{ $viewproducts->total() }} results</p>
+                    <p class="text-right mt-4">Showing {{ $viewproducts->firstItem() }} - {{ $viewproducts->lastItem() }}
+                        of {{ $viewproducts->total() }} results</p>
 
 
 
@@ -192,8 +193,9 @@
 
 
                     <div class="row">
-
+                       
                         @forelse ($viewproducts as $product)
+                        
                             <div class="col-sm-3 col-md-2 col-lg-4">
                                 <div class="card">
                                     <div class="card-body text-center">
@@ -205,12 +207,23 @@
                                         <h5 class="card-title"><b>{{ $product->name }}</b></h5>
                                         <p class="card-text small description-limit">{{ $product->description }}</p>
                                         <p class="price-tag"> Rs.{{ $product->price }}</p>
-                                        <a href="" target="_blank" class="btn btn-secondary button-text">
-                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart
-                                        </a>
+
+                                        <form action="{{url('/addcart',$product->id)}}" method="post" class="add-to-cart-form">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                            <div class="input-group">
+                                                <input type="number" name="quantity" value="1" min="1" max="10" required class="form-control quantity-input">
+                                                <div class="input-group-append">
+                                                    <button type="submit" class="btn btn-success">Add to Cart</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                            
+
                                     </div>
                                 </div>
                             </div>
+                       
                             <div class="modal fade" id="productModal{{ $product->id }}" tabindex="-1" role="dialog"
                                 aria-labelledby="productModalLabel{{ $product->id }}" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -241,7 +254,11 @@
                             <div class="col-12 text-center mt-5">
                                 <p>No products found. Try searching another one</p>
                             </div>
+
+                       
                         @endforelse
+
+                
                     </div>
                     <div class="d-flex justify-content-end">
 

@@ -5,12 +5,18 @@ namespace App\Http\Controllers\FrontEnd;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Cart;
+
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
+
 
 class MenuController extends Controller
 {
     public function searchSort(Request $request)
     {
+
+        
         $searchQuery = $request->input('search');
         $sortOption = $request->input('sort');
         $foodType = $request->input('food_type');
@@ -52,7 +58,7 @@ class MenuController extends Controller
         if ($minPrice && $maxPrice) {
             $query->whereBetween('price', [$minPrice, $maxPrice]);
         } else {
-            $query->orderBy('price','asc');
+            $query->orderBy('price', 'asc');
         }
 
 
@@ -65,13 +71,45 @@ class MenuController extends Controller
 
         if ($viewproducts->isEmpty()) {
             // If no products found, return a message
-            return view('allproducts', compact('categories', 'viewproducts','searchQuery', 'sortOption', 'foodType', 'categoryId'))->withErrors([]);
+            return view('allproducts', compact('categories', 'viewproducts', 'searchQuery', 'sortOption', 'foodType', 'categoryId'))->withErrors([]);
         }
 
 
 
         // If products are found, return the view with the products
         return view('allproducts', compact('viewproducts', 'categories', 'searchQuery', 'sortOption', 'foodType', 'categoryId'));
+    }
+
+
+    public function addCart(Request $request, $id)
+    {
+
+        if (auth()->user()) {
+
+            $user_id = Auth::id();
+
+            $product_id = $id;
+            $quantity = $request->quantity;
+
+            $cart = new Cart();
+
+            $cart->user_id = $user_id;
+
+            $cart->product_id = $product_id;
+
+            $cart->quantity = $quantity;
+
+            $cart->save();
+
+            
+
+
+            return redirect()->back();
+        } else {
+            return redirect(route('login'));
+        }
+
+
     }
 
 

@@ -15,6 +15,7 @@ class CategoryController extends Controller
     public function Category()
     {
         $category = Category::orderBy('created_at', 'desc')->paginate(5);
+        
 
         return view('admin.category.category', compact('category'));
     }

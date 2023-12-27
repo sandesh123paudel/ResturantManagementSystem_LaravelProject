@@ -50,7 +50,16 @@
 .card-text {
     font-size: 13px;
 }
+.add-to-cart-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.quantity-input {
+    width: 60px; /* Adjust the width as needed */
+    text-align: center;
+}
 .price-tag {
     color: chocolate;
     font-size: 18px; /* Adjust the font size */

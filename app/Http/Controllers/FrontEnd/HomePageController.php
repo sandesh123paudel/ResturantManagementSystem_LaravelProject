@@ -13,7 +13,6 @@ class HomePageController extends Controller
     {
         $viewcategories = Category::all();
         
-        
         $viewproducts = Product::inRandomOrder()->take(8)->get(); 
     
         return view('home', compact('viewcategories',('viewproducts')));

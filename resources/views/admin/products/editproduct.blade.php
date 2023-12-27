@@ -5,7 +5,7 @@
         <div class="container-fluid my-2">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Edit Product "{{$product->name}}"</h1>
+                    <h1>Edit Product "{{ $product->name }}"</h1>
                 </div>
                 <div class="col-sm-6 text-right">
                     <a href={{ route('admin.products') }} class="btn btn-primary">Back</a>
@@ -54,7 +54,6 @@
                                             @if ($product->product_image)
                                                 <img src="{{ asset('storage/' . $product->product_image) }}"
                                                     alt="Product Image" style="max-width: 100px; max-height: 100px;">
-                                                    
                                             @else
                                                 <p>No image available</p>
                                             @endif

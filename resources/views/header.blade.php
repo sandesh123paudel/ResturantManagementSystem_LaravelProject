@@ -24,13 +24,18 @@
                   <a class="nav-link" href="/menu" style="color: black;">Menu</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/" style="color: black;">Orders</a>
+                    <a class="nav-link" href="/about" style="color: black;">About</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="/contact" style="color: black;">Contact Us</a>
                   </li>
+                  
+                
+                
+                  
+                
             
-                </li>
+                
 
                 <li class="nav-item dropdown">
                   @auth
@@ -64,6 +69,19 @@
                       </div>
                   @endauth
               </li>
+              @auth
+              <li class="nav-item">
+               @php
+
+                   $cartCount=App\Helpers\CartHelper::CartCount();
+               @endphp
+                    <a class="nav-link" href="/cart" style="color: black;">Cart[{{$cartCount}}]</a>
+              
+            </li>
+            
+              @endauth
+            
+              
               
               
               </ul>
