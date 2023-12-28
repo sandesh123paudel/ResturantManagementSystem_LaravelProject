@@ -30,22 +30,27 @@
 
                         </div>
                         <div class="col-md-6">
-                            <table class="table table-bordered">
-                                <thead>
+                            <table class="table table-hover ">
+                                <thead class="table-success">
                                     <tr>
+                                        <th>S.N</th>
                                         <th>Image</th>
                                         <th>Name</th>
                                         <th>Quantity</th>
                                         <th>Price</th>
+                                        <th>Total Price</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($orders->orderItems as $order)
+                                    @foreach ($orders->orderItems as $index=> $order)
                                     <tr>
-                                        <th><img src="{{asset('storage/'.$order->product->product_image)}}"  width="50px" alt="Img"></th>
+                                        <td>{{ $index + 1 }}</td>
+                                        <th><img src="{{asset('storage/'.$order->product->product_image)}}"  width="50px"  alt="Img"></th>
                                         <td>{{$order->product->name}}</td>
                                         <td>{{$order->quantity}}</td>
-                                        <td>{{$order->price}}</td>
+                                        <td>Rs.{{$order->price}}</td>
+                                        <td>Rs.{{($order->quantity * $order->price)}}</td>
+
 
 
                                         
@@ -56,7 +61,7 @@
                 
                             </table>
                             <div class="card-footer">
-                                <p class="text-right" style="font-weight:700">Total Price: Rs {{$orders->totalPrice}}</p>
+                                <p class="text-right" style="font-weight:700">Grand Total: Rs {{$orders->totalPrice}}</p>
                             </div>
                         </div>
                     </div>

@@ -5,13 +5,18 @@
         <div class="card m-4">
             <div class="card-header">
                 <h1>Order Details "{{ $order->tracking_no }}"</h1>
+                <a href="{{ route('admin.orders') }}" class="btn btn-secondary float-end btn-sm">Back to Orders</a>
+
+
             </div>
+            
+            
             <div class="card-body">
                 <table class="table">
                     
                     <tr>
                         <th>Customer:</th>
-                        <td>{{ $order->fname }}</td>
+                        <td>{{ $order->fname }} {{ $order->lname }}</td>
                     </tr>
                     <tr>
                         <th>Email:</th>
@@ -20,6 +25,10 @@
                     <tr>
                         <th>Phone:</th>
                         <td>{{ $order->phone }}</td>
+                    </tr>
+                    <tr>
+                        <th>Address:</th>
+                        <td>{{ $order->address }}</td>
                     </tr>
                     <tr>
                         <th>Status:</th>
@@ -43,16 +52,22 @@
                     </tr>
                     <!-- Add more details as needed -->
 
-                    <tr>
-                        <th colspan="3">Products in Order</th>
+                    <tr class="table-info">
+                        <th colspan="6" class="text-center">Products in Order</th>
                     </tr>
-                    <tr>
+                    <tr class="table-success">
+                        <th>S.N</th>
                         <th>Product</th>
-                        <th>Price</th>
+                        
                         <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total Price</th>
+
                     </tr>
-                    @foreach($order->orderItems as $item)
+                    @foreach($order->orderItems as  $index=>$item)
+                    
                         <tr>
+                            <td>{{ $index + 1 }}</td>
                             <td>
                                 @if ($item->product)
                                     {{ $item->product->name }}
@@ -60,15 +75,19 @@
                                     Product Not Found
                                 @endif
                             </td>
+                            
+                            <td width="20px">{{ $item->quantity }}</td>
                             <td>Rs.{{ $item->price }}</td>
-                            <td>{{ $item->quantity }}</td>
+                            <td>Rs.{{ $item->quantity * $item->price}}</td>
+
                         </tr>
                     @endforeach
                 </table>
                 <div class="card-footer">
-                    <p class="text-right" style="font-weight:700">Total Price: Rs {{$order->totalPrice}}</p>
+                    <p class="text-right" style="font-weight:700">Grand Total: Rs {{$order->totalPrice}}</p>
                 </div>
             </div>
+            
         </div>
     
 @endsection
