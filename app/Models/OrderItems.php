@@ -4,16 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Cart extends Model
+class OrderItems extends Model
 {
     use HasFactory;
+    protected $table= 'order_items';
+    protected $guarded=[];
 
-    protected $guarded =[];
-
-
-    public function products()
+    public function product():BelongsTo
     {
         return $this->belongsTo(Product::class,'product_id','id');
     }
+
 }

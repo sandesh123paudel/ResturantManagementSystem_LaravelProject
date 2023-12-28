@@ -101,7 +101,6 @@
         </div>
     </div>
     
-    <!-- /.card -->
 </section>
     
 
