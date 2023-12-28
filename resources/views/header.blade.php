@@ -75,11 +75,18 @@
 
                    $cartCount=App\Helpers\CartHelper::CartCount();
                @endphp
-                    <a class="nav-link" href="/cart" style="color: black;">Cart[{{$cartCount}}]</a>
+                    <a class="nav-link"  style="color: coral" href="{{url('/cart',Auth::user()->id)}}" style="color: black;">Cart[{{$cartCount}}]</a>
               
             </li>
             
               @endauth
+              @guest
+              <li class="nav-item">
+               
+                     <a class="nav-link" style="color: red" href="" style="color: black;">Cart[0]</a>
+               
+             </li>
+              @endguest
             
               
               

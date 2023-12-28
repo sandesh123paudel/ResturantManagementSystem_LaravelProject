@@ -81,36 +81,7 @@ class MenuController extends Controller
     }
 
 
-    public function addCart(Request $request, $id)
-    {
-
-        if (auth()->user()) {
-
-            $user_id = Auth::id();
-
-            $product_id = $id;
-            $quantity = $request->quantity;
-
-            $cart = new Cart();
-
-            $cart->user_id = $user_id;
-
-            $cart->product_id = $product_id;
-
-            $cart->quantity = $quantity;
-
-            $cart->save();
-
-            
-
-
-            return redirect()->back();
-        } else {
-            return redirect(route('login'));
-        }
-
-
-    }
+    
 
 
 

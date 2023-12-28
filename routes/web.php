@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FrontEnd\CartController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -47,7 +48,13 @@ Route::controller(MenuController::class)->group(function(){
 });
 
 
-Route::post("/addcart/{id}",[MenuController::class,'addCart']);
+Route::post("/addcart/{id}",[CartController::class,'addCart']);
+
+Route::get("/cart/{id}",[CartController::class,'showCart']);
+
+Route::get("/remove/{id}",[CartController::class,'removeCart']);
+
+
 
 
 
