@@ -43,7 +43,7 @@
 </head>
 
 <body>
-    @include('header')
+    @include('frontend.header')
 
     <div class="content">
         @yield('content')
@@ -52,7 +52,7 @@
         
     </div>
 
-    @include('footer')
+    @include('frontend.footer')
 
 
 

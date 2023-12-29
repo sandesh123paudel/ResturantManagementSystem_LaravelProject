@@ -1,4 +1,4 @@
-@extends('master')
+@extends('frontend.master')
 
 @section('content')
 
@@ -15,6 +15,7 @@
                             <tr>
                                 <th>Tracking Id</th>
                                 <th>Total Price</th>
+                                <th>Ordered Date</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -23,7 +24,10 @@
                             @foreach ($orders as $order)
                                 <tr>
                                     <td><a href="{{ url('view-order/'.$order->id) }}">{{ $order->tracking_no }}</a></td>
+                                    
                                     <td>Rs.{{ $order->totalPrice }}</td>
+                                    <td>{{ date('Y-m-d',strtotime($order->created_at)) }}</td>
+
                                     <td>
                                         @if ($order->status == 0)
                                             <span class="badge bg-warning text-dark">Processing</span>

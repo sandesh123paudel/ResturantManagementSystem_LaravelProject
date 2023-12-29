@@ -1,4 +1,4 @@
-@extends('master')
+@extends('frontend.master')
 
 @section('content')
     <div class="container mt-3">
@@ -132,12 +132,12 @@
                     </div>
                 </div>
             </form>
+        @else
+            <div class="alert alert-warning mt-4" role="alert">
+                Nothing to checkout. Your cart is empty.
+            </div>
+        @endif
     </div>
-@else
-    <div class="alert alert-warning mt-4" role="alert">
-        Nothing to checkout. Your cart is empty.
-    </div>
-    @endif
 
 @endsection
 

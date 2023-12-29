@@ -15,7 +15,7 @@ class CartController extends Controller
 
         $cartnumber = Cart::where('user_id', $user_id)->count();
         
-        return view('master', compact('cartnumber'));
+        return view('frontend.master', compact('cartnumber'));
     }
 
     public function addCart(Request $request, $id)
@@ -59,7 +59,7 @@ class CartController extends Controller
                         ->select('carts.*', 'products.name', 'products.description', 'products.price', 'products.product_image')
                         ->get();
     
-        return view('cart', compact('cartData'));
+        return view('user.cart', compact('cartData'));
     }
     
 

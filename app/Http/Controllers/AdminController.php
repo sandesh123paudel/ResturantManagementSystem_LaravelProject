@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Order;
+use App\Models\User;
+
+
+
 
 
 class AdminController extends Controller
@@ -12,7 +17,12 @@ class AdminController extends Controller
 
     public function AdminDashboard()
     {
-        return view('admin.admin_dashboard');
+        $totalOrders = Order::count();
+        $totalUsers = User::where('role', 'user')->count();
+
+        $totalAmountEarned = Order::where('status', 1)->sum('totalPrice');
+    
+        return view('admin.admin_dashboard', compact('totalOrders', 'totalUsers', 'totalAmountEarned'));
     } //End Method
 
 
@@ -27,19 +37,6 @@ class AdminController extends Controller
         return redirect('/');
     }
 
-
-    public function Orders()
-    {
-
-        return view('admin.orders.orders');
-    }
-
-   
-    public function AddUsers()
-    {
-
-        return view('admin.users.adduser');
-    }
 
 
 }

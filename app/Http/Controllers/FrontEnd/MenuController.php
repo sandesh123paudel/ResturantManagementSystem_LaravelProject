@@ -71,13 +71,13 @@ class MenuController extends Controller
 
         if ($viewproducts->isEmpty()) {
             // If no products found, return a message
-            return view('allproducts', compact('categories', 'viewproducts', 'searchQuery', 'sortOption', 'foodType', 'categoryId'))->withErrors([]);
+            return view('frontend.allproducts', compact('categories', 'viewproducts', 'searchQuery', 'sortOption', 'foodType', 'categoryId'))->withErrors([]);
         }
 
 
 
         // If products are found, return the view with the products
-        return view('allproducts', compact('viewproducts', 'categories', 'searchQuery', 'sortOption', 'foodType', 'categoryId'));
+        return view('frontend.allproducts', compact('viewproducts', 'categories', 'searchQuery', 'sortOption', 'foodType', 'categoryId'));
     }
 
 

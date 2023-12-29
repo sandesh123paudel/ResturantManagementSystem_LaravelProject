@@ -1,4 +1,4 @@
-@extends('master')
+@extends('frontend.master')
  
 
 @section('content')
@@ -18,13 +18,13 @@
 
 @endif
 
-@include('slider')
+@include('frontend.slider')
 
 
-@include('categories')
+@include('frontend.categories')
 
 
-@include('bestproducts')
+@include('frontend.bestproducts')
 
 
 

@@ -49,12 +49,15 @@
                               <a class="dropdown-item" href="{{ route('admin.logout') }}" style="color: black;">Logout</a>
                           </div>
                       @else
-                          <a class="nav-link dropdown-toggle" style="color: rgb(26, 237, 26);" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <a class="nav-link dropdown-toggle" style="color: orangered;" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               {{ Auth::user()->name }}
                           </a>
                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ url('my-orders') }}" style="color: black;">My Profile</a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ url('my-orders') }}" style="color: black;">My Orders</a>
                             <div class="dropdown-divider"></div>
+                            
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 <button type="submit" class="dropdown-item" style="color: black;">Logout</button>
@@ -87,7 +90,7 @@
               @guest
               <li class="nav-item">
                
-                     <a class="nav-link" style="color: red" href="" style="color: black;">Cart[0]</a>
+                     <a class="nav-link" style="color: red" href="/login" style="color: black;">Cart[0]</a>
                
              </li>
               @endguest

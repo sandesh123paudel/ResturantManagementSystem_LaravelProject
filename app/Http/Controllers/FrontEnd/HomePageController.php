@@ -15,7 +15,7 @@ class HomePageController extends Controller
         
         $viewproducts = Product::inRandomOrder()->take(8)->get(); 
     
-        return view('home', compact('viewcategories',('viewproducts')));
+        return view('frontend.home', compact('viewcategories',('viewproducts')));
 
     }
 }

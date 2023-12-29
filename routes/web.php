@@ -19,7 +19,7 @@ use App\Http\Controllers\FrontEnd\FUserController;
 
 
 Route::get('/', function () {
-    return view('home');
+    return view('frontend.home');
 });
 
 
@@ -63,21 +63,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post("/place-order", [CheckOutController::class, 'placeorder']);
 
+                                   
     Route::get("my-orders",[FUserController::class,'index']);
+    Route::get("/dashboard",[FUserController::class,'index']);
+
 
     Route::get("view-order/{id}",[FUserController::class,'view']);
-    
-
 });
-
-
-
-Route::get('/welcome', function () {
-    return view('home');
-});
-
-
-
 
 
 
@@ -93,9 +85,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('admin/editcategory/{id}', 'EditCategory')->name('admin.editcategory');
         Route::put('admin/updatecategory/{id}', 'UpdateCategory');
         Route::get('admin/deletecategory/{id}', 'DeleteCategory')->name('admin.deletecategory');
-
-
-
     });
 
     Route::controller(ProductController::class)->group(function () {
@@ -106,8 +95,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('admin/editproduct/{id}', 'EditProduct');
         Route::put('admin/updateproduct/{id}', 'UpdateProducts');
         Route::get('admin/deleteproduct/{id}', 'DeleteProduct')->name('admin.deleteproduct');
-
-
 
     });
 
@@ -133,30 +120,17 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 
 
-
-
-
-
-
-    // Route::get('/admin/orders', [AdminController::class, 'Orders'])->name('admin.orders');
-    //Route::get('/admin/users', [AdminController::class, 'Users'])->name('admin.users');
-    //Route::get('/admin/addusers', [AdminController::class, 'AddUsers'])->name('admin.addusers');
-
 }); // End group  Admin Middleware
 
 
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
 //Route::
 require __DIR__ . '/auth.php';
