@@ -20,6 +20,7 @@ class Role
             return redirect('dashboard');
 
         }
+        
         return $next($request);
     }
 

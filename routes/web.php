@@ -65,11 +65,20 @@ Route::middleware(['auth'])->group(function () {
 
                                    
     Route::get("my-orders",[FUserController::class,'index']);
-    Route::get("/dashboard",[FUserController::class,'index']);
+    Route::controller(HomePageController::class)->group(function () {
+        Route::get('/dashboard', 'ViewCategoryHome');
+    
+    });
 
 
     Route::get("view-order/{id}",[FUserController::class,'view']);
 });
+
+
+
+
+
+
 
 
 
@@ -85,6 +94,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('admin/editcategory/{id}', 'EditCategory')->name('admin.editcategory');
         Route::put('admin/updatecategory/{id}', 'UpdateCategory');
         Route::get('admin/deletecategory/{id}', 'DeleteCategory')->name('admin.deletecategory');
+
+
+
     });
 
     Route::controller(ProductController::class)->group(function () {
@@ -95,6 +107,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('admin/editproduct/{id}', 'EditProduct');
         Route::put('admin/updateproduct/{id}', 'UpdateProducts');
         Route::get('admin/deleteproduct/{id}', 'DeleteProduct')->name('admin.deleteproduct');
+
+
 
     });
 
@@ -126,11 +140,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
+
 
 //Route::
 require __DIR__ . '/auth.php';
