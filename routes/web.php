@@ -72,6 +72,19 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get("view-order/{id}",[FUserController::class,'view']);
+
+    Route::get('my-profile', [FUserController::class, 'viewprofile'])->name('my-profile');
+
+
+    Route::get('edit-profile/{id}', [FUserController::class,'editprofile']);
+
+    Route::put('updateprofile/{id}', [FUserController::class,'updateprofile']);
+
+
+
+
+
+
 });
 
 
@@ -135,11 +148,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 
 }); // End group  Admin Middleware
-
-
-
-
-
 
 
 //Route::

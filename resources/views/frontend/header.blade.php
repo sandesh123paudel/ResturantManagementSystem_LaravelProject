@@ -53,7 +53,7 @@
                               {{ Auth::user()->name }}
                           </a>
                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('my-orders') }}" style="color: black;">My Profile</a>
+                            <a class="dropdown-item" href="{{ url('my-profile') }}" style="color: black;">My Profile</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ url('my-orders') }}" style="color: black;">My Orders</a>
                             <div class="dropdown-divider"></div>

@@ -24,7 +24,7 @@ class AdminController extends Controller
         $dailyData = $this->getDailyData();
 
         // Rest of the code remains the same
-        $totalOrders = Order::where('status', 1)->count();
+        $totalOrders = Order::count();
         $totalUsers = User::where('role', 'user')->count();
         $totalAmountEarned = Order::where('status', 1)->sum('totalPrice');
 
