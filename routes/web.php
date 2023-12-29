@@ -27,7 +27,10 @@ Route::get('/contact', function () {
     return view('contactus.contactus');
 
 });
+Route::get('/about-us', function () {
+    return view('frontend.aboutus');
 
+});
 
 Route::controller(ContactController::class)->group(function () {
     Route::post('/contact/submit', 'submitContactForm')->name('contact.submit');

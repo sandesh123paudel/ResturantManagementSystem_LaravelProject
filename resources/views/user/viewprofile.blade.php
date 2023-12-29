@@ -46,9 +46,13 @@
                             </div>
 
                         </div>
+
+
                     </div>
+                    <a href="{{ url('edit-profile/'.Auth::user()->id) }}" class="btn btn-secondary mr-3">Change Details?</a>
+
                   
-                    <a href="{{url('edit-profile/'.Auth::user()->id)}}" class="btn btn-secondary"  style="align-content: center">Edit Profile</a>
+                    
 
                 </div>
             </div>

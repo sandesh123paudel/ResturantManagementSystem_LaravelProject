@@ -24,10 +24,10 @@
                   <a class="nav-link" href="/menu" style="color: black;">Menu</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/about" style="color: black;">About</a>
+                    <a class="nav-link" href="/about-us" style="color: black;">About Us</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/contact" style="color: black;">Contact Us</a>
+                    <a class="nav-link" href="/contact" style="color: black;">Contact</a>
                   </li>
                   
                 
