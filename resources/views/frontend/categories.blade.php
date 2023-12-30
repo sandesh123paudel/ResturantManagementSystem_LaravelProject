@@ -24,10 +24,10 @@
             border-radius: 30px;
             box-shadow: 0 0 10px rgba(0, 0, 0, .2);
             margin: 0 5px;
-            /* Adjust margin for better spacing */
+           
             align-items: stretch;
             width: 90%;
-            /* Set a percentage width for better responsiveness */
+           
         }
 
 

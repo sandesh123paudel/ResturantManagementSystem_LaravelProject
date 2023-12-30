@@ -12,9 +12,7 @@ use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     */
+   
     public function create(): View
     {
         return view('auth.login');
@@ -37,7 +35,7 @@ class AuthenticatedSessionController extends Controller
         }
         elseif($request->user()->role ==='user')
         {
-            $url='/';
+            $url='/verify-email';
         }
 
         return redirect()->intended($url);

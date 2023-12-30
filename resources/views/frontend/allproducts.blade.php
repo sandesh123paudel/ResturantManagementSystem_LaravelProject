@@ -50,14 +50,12 @@
 
 
                 </div>
-                <!--END  <div class="col-lg-3 blog-form">-->
 
                 <div class="col-lg-9" style="padding-left: 30px;">
 
 
 
 
-                    <!-- Update your view -->
                     <div class="row">
 
                         <div class="mt-3" id="searchResults">
@@ -122,7 +120,6 @@
 
 
 
-                            <!-- Add a hidden input field for the category ID -->
                             <input type="hidden" id="category" name="category" value="{{ request('category') }}">
 
 
@@ -145,26 +142,19 @@
                             });
 
                             function resetForm() {
-                                // Reset form fields
                                 $('#search, #sort, #category, #foodType').val('');
 
-                                // Submit the form
                                 $('#searchSortForm').submit();
                             }
 
-                            $('#resetButton').click(function() {
-                                resetForm();
-                            });
+                            $('#resetButton').click(function() {});
                         });
 
                         $(document).ready(function() {
-                            // Initial visibility based on searchQuery
                             toggleShowingAllProducts();
 
                             $('#resetButton').click(function() {
-                                // Simulate clearing the search query
                                 $('#search').val('');
-                                // Toggle visibility after clearing the search query
                                 toggleShowingAllProducts();
                             });
 
@@ -193,9 +183,8 @@
 
 
                     <div class="row">
-                       
+
                         @forelse ($viewproducts as $product)
-                        
                             <div class="col-sm-3 col-md-2 col-lg-4">
                                 <div class="card">
                                     <div class="card-body text-center">
@@ -208,22 +197,24 @@
                                         <p class="card-text small description-limit">{{ $product->description }}</p>
                                         <p class="price-tag"> Rs.{{ $product->price }}</p>
 
-                                        <form action="{{url('/addcart',$product->id)}}" method="post" class="add-to-cart-form">
+                                        <form action="{{ url('/addcart', $product->id) }}" method="post"
+                                            class="add-to-cart-form">
                                             @csrf
                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                                             <div class="input-group">
-                                                <input type="number" name="quantity" value="1" min="1" max="10" required class="form-control quantity-input">
+                                                <input type="number" name="quantity" value="1" min="1"
+                                                    max="10" required class="form-control quantity-input">
                                                 <div class="input-group-append">
                                                     <button type="submit" class="btn btn-success">Add to Cart</button>
                                                 </div>
                                             </div>
                                         </form>
-                            
+
 
                                     </div>
                                 </div>
                             </div>
-                       
+
                             <div class="modal fade" id="productModal{{ $product->id }}" tabindex="-1" role="dialog"
                                 aria-labelledby="productModalLabel{{ $product->id }}" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -237,13 +228,11 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <!-- Display full product details here -->
                                             <img src="{{ asset('storage/' . $product->product_image) }}"
                                                 class="img-fluid" alt="Product Image">
                                             <p style="font-weight: 500">{{ $product->description }}</p>
                                             <p style="color: chocolate; font-weight: 800"">Price: Rs.{{ $product->price }}
                                             </p>
-                                            <!-- Add more details as needed -->
                                         </div>
                                     </div>
                                 </div>
@@ -254,11 +243,9 @@
                             <div class="col-12 text-center mt-5">
                                 <p>No products found. Try searching another one</p>
                             </div>
-
-                       
                         @endforelse
 
-                
+
                     </div>
                     <div class="d-flex justify-content-end">
 

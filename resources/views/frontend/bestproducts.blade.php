@@ -25,7 +25,7 @@
                 </div>
             </div>
 
-            <!-- Product Details Modal -->
+          
             <div class="modal fade" id="productModal{{ $product->id }}" tabindex="-1" role="dialog"
                 aria-labelledby="productModalLabel{{ $product->id }}" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -37,11 +37,13 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <!-- Display full product details here -->
+                           
                             <img src="{{ asset('storage/' . $product->product_image) }}" class="img-fluid"
                                 alt="Product Image">
                             <p style="font-weight: 00">{{ $product->description }}</p>
                             <p style="color: chocolate; font-weight: 800"">Price: Rs.{{ $product->price }}</p>
+                            <p style="color: {{ $product->item == 'veg' ? 'green' : 'red' }}; font-weight: 800;">Item:{{ $product->item }}</p>
+
 
                         </div>
                     </div>
@@ -49,7 +51,6 @@
             </div>
 
             @if ($index == 7)
-                {{-- Display text after 8 products --}}
                 <div class="col-12 text-center mt-4">
                     <p><a href="/menu" style="text-decoration: none; color: darkred; font-weight: 600">View More
                             Products.....</a></p>

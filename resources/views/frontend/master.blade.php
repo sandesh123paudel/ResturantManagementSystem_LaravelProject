@@ -22,7 +22,7 @@
 
     <!-- SweetAlert2 CSS -->
 
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 
     <!-- Your Custom CSS -->
@@ -47,16 +47,13 @@
 
     <div class="content">
         @yield('content')
-
-
-        
     </div>
 
     @include('frontend.footer')
 
 
 
-   
+
 </body>
 
 </html>
