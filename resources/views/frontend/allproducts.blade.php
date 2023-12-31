@@ -147,7 +147,14 @@
                                 $('#searchSortForm').submit();
                             }
 
-                            $('#resetButton').click(function() {});
+                            $('#resetButton').click(function() {
+                                $('#resetButton').click(function() {
+                                    $('#search').val('');
+                                    $('#sort, #foodType').prop('selectedIndex', 0);
+                                    $('#category').val('');
+                                    $('#searchSortForm').submit();
+                                });
+                            });
                         });
 
                         $(document).ready(function() {

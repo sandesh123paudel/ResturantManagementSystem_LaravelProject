@@ -36,16 +36,16 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-form-title" style="background-image: url(https://res.cloudinary.com/grubhub/image/upload/d_search:browse-images:default.jpg/w_267,q_80,fl_lossy,dpr_2.0,c_fill,f_auto,h_132/wzzsttf9irlleysk6ym4);">
-                    <img src="{{asset('images/logowhite.svg')}}" alt="Restaurant Logo" class="restaurant-logo">
+                    <a href="/"><img src="{{asset('images/logowhite.svg')}}" alt="Restaurant Logo" class="restaurant-logo"></a>
 
 					<span class="login100-form-title-1">
 						Log In To Continue
 					</span>
 				</div>
-                <div class="card m-3">
-                    <p class="text-lg text-center text-gray-700 mb-6"><strong>Welcome back!</strong> Please log in to your account.</p>
+               
+                    <p class="text-lg text-center text-gray-700 mb-6 mt-3" style="font-size: 18px; "><strong>Welcome back!</strong> Please log in to your account.</p>
 
-                </div>
+                
 
 
                 <x-auth-session-status class="m-5" style="color: chocolate" :status="session('status')" />
@@ -97,6 +97,13 @@
 							Login
 						</button>
 					</div>
+
+					
+					<a href="/register">
+						<p class="text-lg text-center text-gray-700 mb-6 mt-3" style="font-size: 14px; "><strong>Dont't have an account? SignUp</p>
+
+					</a>
+					
 				</form>
 			</div>
 		</div>

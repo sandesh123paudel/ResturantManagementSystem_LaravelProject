@@ -22,10 +22,7 @@ class ContactFormMail extends Mailable
 
     public function build()
 {
-    return $this->from($this->data['email'])
-                ->subject('New Contact Form Submission')
-                ->text('emails.contact-form-plain') // Plain text version
-                ->with('data', $this->data);
+    return $this->subject('Contact Message')->view('contactus.mail');
 }
 
 

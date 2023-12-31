@@ -83,6 +83,8 @@
     overflow: hidden; /* Ensure content does not overflow */
 }
 
+
+
 .product-image:hover {
     transform: scale(1.025);
     transition: transform 0.3s ease-in-out;
@@ -90,7 +92,7 @@
 
 /* Responsive styles using media queries */
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 992px) {
     /* Adjust styles for screens up to 768px width */
     .blog-form {
         padding: 10px; /* Adjust padding for smaller screens */
@@ -102,6 +104,8 @@
     }
 
     .product-image {
+        width: 100%; /* Make the image take the full width of its container */
+        height: auto; /* Maintain aspect ratio */
         border-radius: 0; /* Remove border-radius for smaller screens */
     }
 }

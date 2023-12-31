@@ -36,17 +36,19 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-form-title" style="background-image: url(https://res.cloudinary.com/grubhub/image/upload/d_search:browse-images:default.jpg/w_267,q_80,fl_lossy,dpr_2.0,c_fill,f_auto,h_132/wzzsttf9irlleysk6ym4);">
-                    <img src="{{asset('images/logowhite.svg')}}" alt="Restaurant Logo" class="restaurant-logo">
+                    <a href="/">
+						<img src="{{asset('images/logowhite.svg')}}" alt="Restaurant Logo" class="restaurant-logo">
+					</a>
 
 					<span class="login100-form-title-1">
 						Register for a New Account
 					</span>
 				</div>
 
-				<div class="card m-3" >
-				<p class="text-lg text-center text-gray-700 mb-6"><strong>Create Your Account To Get Started</strong>
+				
+				<p class="text-lg text-center text-gray-700 mb-6 mt-3" style="font-size: 18px"><strong>Create Your Account To Get Started!!</strong>
 
-				</div>
+			
 
 
 
@@ -137,10 +139,11 @@
 						</button>
 					</div>
 
-                   <div class="mt-5">
-                    <a href="{{ route('login') }}" class="txt1" style="text-align: right;color: chocolate">
-                        Already Registered?
-                    </a>
+                   <div class="mt-3">
+					<a href="/login">
+						<p class="text-lg text-center text-gray-700 mb-6 mt-3" style="font-size: 14px; "><strong>Already have an account? LogIn</p>
+
+					</a>
                     
                    </div>
                     

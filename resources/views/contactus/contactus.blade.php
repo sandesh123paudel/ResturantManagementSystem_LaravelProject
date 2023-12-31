@@ -19,69 +19,49 @@
                     <div class="contact-form card p-4">
                         <h1 class="title mb-4">Contact Us</h1>
                         <h2 class="subtitle mb-4">We are here to assist you.</h2>
+                        @if (Session::has('message_sent'))
+                            <div class="alert alert-success" role="alert">
+                                {{ Session::get('message_sent') }}
+                            </div>
+                        @endif
 
                         <form action="{{ route('contact.submit') }}" method="post" class="my-4" id="contactForm">
                             @csrf
 
                             <div class="form-group">
-                                <input type="text" name="name" class="form-control" placeholder="Your Name"
-                                    required />
+                                <input type="text" name="name" class="form-control" placeholder="Your Name" required
+                                    value="{{ old('name') }}" />
+                                @error('name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
-                                <input type="email" name="e-mail" class="form-control" placeholder="Your E-mail Address"
-                                    required />
+                                <input type="email" name="email" class="form-control" placeholder="Your E-mail Address"
+                                    required value="{{ old('email') }}" />
+                                @error('email')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <input type="tel" name="phone" class="form-control" placeholder="Your Phone Number"
-                                    required />
+                                    required value="{{ old('phone') }}" />
+                                @error('phone')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
-                                <textarea name="text" class="form-control" rows="6" placeholder="Your Message"
-                                    required></textarea>
+                                <textarea name="message" class="form-control" rows="6" placeholder="Your Message" required>{{ old('message') }}</textarea>
+                                @error('message')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <button type="submit" class="btn btn-secondary btn-send">Get a Call Back</button>
                         </form>
 
-                        <!-- Display message details -->
-                        @isset($data)
-                            <p>Name: {{ $data['name'] }}</p>
-                            <p>Email: {{ $data['email'] }}</p>
-                            <p>Phone: {{ $data['phone'] }}</p>
-                            <p>Message: {{ $data['text'] ?? '' }}</p>
 
-                        @endisset
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.querySelector('#contactForm');
-
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            fetch(form.action, {
-                    method: form.method,
-                    body: new FormData(form),
-                })
-                .then(response => {
-                    if (response.ok) {
-                        // Show the thank you alert
-                        alert('Thank you! Your message has been sent successfully.');
-                        form.reset(); // Optionally reset the form after successful submission
-                    } else {
-                        // Handle errors if needed
-                        alert('Oops! Something went wrong.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Oops! Something went wrong.');
-                });
-        });
-    });
-</script>

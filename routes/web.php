@@ -33,7 +33,7 @@ Route::get('/about-us', function () {
 });
 
 Route::controller(ContactController::class)->group(function () {
-    Route::post('/contact/submit', 'submitContactForm')->name('contact.submit');
+    Route::post('/send-message', 'sendEmail')->name('contact.submit');
 
 });
 

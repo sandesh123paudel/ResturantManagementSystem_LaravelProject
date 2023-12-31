@@ -10,29 +10,27 @@ use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
-    public function submitContactForm(Request $request)
+    public function sendEmail(Request $request)
     {
         // Validate the form data
         $request->validate([
-            'name' => 'required|string',
-            'e-mail' => 'required|email',
-            'phone' => 'required|string',
-            'text' => 'required|string',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:10|min:10',
+            'message' => 'required|string',
         ]);
-    
         // Collect the data
         $data = [
             'name' => $request->input('name'),
-            'email' => $request->input('e-mail'),
+            'email' => $request->input('email'),
             'phone' => $request->input('phone'),
-            'message' => $request->input('text'),
+            'message' => $request->input('message'),
         ];
         
         Mail::to('sandypoudel24@gmail.com')->send(new ContactFormMail($data));
         
     
-        // You can add a success message or redirect to a thank you page
-        return response()->json(['success' => true]);
+        return back()->with('message_sent','Your Message Has Been Sent Successfully');
 
 
     }
