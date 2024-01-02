@@ -24,7 +24,6 @@ class MenuController extends Controller
         $minPrice = $request->input('min_price');
         $maxPrice = $request->input('max_price');
 
-        // Start with all products
         $query = Product::query();
 
         // Apply search filter
@@ -37,7 +36,6 @@ class MenuController extends Controller
             $query->where('category_id', $categoryId);
         }
 
-        // Apply food type filter
         if ($foodType) {
 
             $query->where('item', strtolower($foodType));
@@ -52,7 +50,6 @@ class MenuController extends Controller
         } elseif ($sortOption == 'oldest') {
             $query->orderBy('created_at', 'asc');
         } elseif ($sortOption == 'asc' || $sortOption == 'desc') {
-            // Sorting by price
             $query->orderBy('price', $sortOption);
         }
         if ($minPrice && $maxPrice) {

@@ -22,8 +22,8 @@
                 <div class="card-body">
                     @if (count($cartData) > 0)
                         <div class="table-responsive">
-                            <table class="table table-bordered m-0">
-                                <thead>
+                            <table class="table table-hover  m-0">
+                                <thead class="thead-light">
                                     <tr>
                                         <th class="text-center py-3 px-4" style="min-width: 400px;">Product Name &amp;
                                             Details

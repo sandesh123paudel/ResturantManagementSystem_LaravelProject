@@ -50,7 +50,7 @@
 			<div class="col-lg-4 col-6">                            
 				<div class="small-box card">
 					<div class="inner">
-						<h3>{{ $totalAmountEarned }}</h3>
+						<h3>Rs.{{ $totalAmountEarned }}</h3>
 						<p>Total Sales</p>
 					</div>
 					<div class="icon">

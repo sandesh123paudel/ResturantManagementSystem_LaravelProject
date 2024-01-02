@@ -12,7 +12,7 @@ use Illuminate\Validation\Rules;
 
 class UserController extends Controller
 {
-    public function Users()
+    public function users()
     {
         $user = User::orderBy('created_at', 'asc')->where('role', 'user')->paginate(8);
 
@@ -23,13 +23,13 @@ class UserController extends Controller
     }
 
 
-    public function AddUsers()
+    public function addUsers()
     {
         $user = User::all();
         return view('admin.users.adduser', compact('user'));
     }
 
-    public function StoreUsers(Request $request)
+    public function storeUsers(Request $request)
     {
 
         $request->validate([
@@ -61,14 +61,14 @@ class UserController extends Controller
     }
 
 
-    public function EditUser($id)
+    public function editUser($id)
     {
         $user = User::find($id);
         return view('admin.users.edituser', compact('user'));
     }
 
 
-    public function UpdateUser(Request $request, $id)
+    public function updateUser(Request $request, $id)
     {
         $user = User::findOrFail($id);
     
@@ -92,7 +92,6 @@ class UserController extends Controller
             ],
         ];
     
-        // Add password validation only if a new password is provided
         if ($request->filled('password')) {
             $rules['password'] = ['required', 'confirmed', Rules\Password::defaults()];
         }
@@ -104,7 +103,6 @@ class UserController extends Controller
         $user->address = $request->address;
         $user->phone = $request->phone;
     
-        // Update password only if a new password is provided
         if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
         }
@@ -119,7 +117,7 @@ class UserController extends Controller
         return redirect()->route('admin.users')->with($notification);
     }
 
-    public function DeleteUser(Request $request)
+    public function deleteUser(Request $request)
     {
         $id=$request->id;
 

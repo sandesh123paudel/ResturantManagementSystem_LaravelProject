@@ -12,14 +12,14 @@ class ContactController extends Controller
 {
     public function sendEmail(Request $request)
     {
-        // Validate the form data
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'required|string|max:10|min:10',
             'message' => 'required|string',
         ]);
-        // Collect the data
+
+        
         $data = [
             'name' => $request->input('name'),
             'email' => $request->input('email'),

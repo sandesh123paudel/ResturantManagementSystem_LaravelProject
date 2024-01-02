@@ -8,7 +8,7 @@ use App\Models\Order;
 
 class OrderController extends Controller
 {
-    public function Order()
+    public function order()
     {
 
 

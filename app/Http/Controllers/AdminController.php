@@ -18,7 +18,7 @@ class AdminController extends Controller
 
 
 
-    public function AdminDashboard()
+    public function adminDashboard()
     {
         // Fetch daily orders and earnings data for the current month
         $dailyData = $this->getDailyData();
@@ -54,7 +54,7 @@ class AdminController extends Controller
     }
 
 
-    public function AdminLogout(Request $request)
+    public function adminLogout(Request $request)
     {
         Auth::guard('web')->logout();
 

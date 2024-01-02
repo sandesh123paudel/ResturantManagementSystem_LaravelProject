@@ -29,7 +29,6 @@ class CheckOutController extends Controller
 
     public function placeorder(Request $request)
     {
-        // Validate the incoming request data
         $request->validate([
             'fname' => 'required|string|max:255',
             'lname' => 'required|string|max:255',
@@ -39,10 +38,8 @@ class CheckOutController extends Controller
 
         ]);
 
-        // Create a new order instance
         $order = new Order();
 
-        // Populate order data from the request
         $order->user_id = Auth::id();
         $order->fname = $request->input('fname');
         $order->lname = $request->input('lname');
@@ -52,13 +49,10 @@ class CheckOutController extends Controller
         $order->totalPrice = $request->input('totalPrice');
         $order->tracking_no = '#ODR' . rand(1111, 9999);
 
-        // Save the order to the database
         $order->save();
 
-        // Retrieve cart items for the user
         $cartItems = Cart::where('user_id', Auth::id())->get();
 
-        // Loop through cart items and create order items
         foreach ($cartItems as $item) {
             OrderItems::create([
                 'order_id' => $order->id,
@@ -68,10 +62,8 @@ class CheckOutController extends Controller
             ]);
         }
 
-        // Destroy the cart items for the user
         Cart::destroy($cartItems);
 
-        // Redirect with a success message
         $notification = [
             'message' => 'Order Placed Successfully',
             'alert-type' => 'success',

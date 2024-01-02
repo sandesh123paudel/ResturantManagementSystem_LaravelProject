@@ -106,21 +106,33 @@
                                     $cartCount = App\Helpers\CartHelper::CartCount();
                                 @endphp
                                 @if (Auth::user()->email_verified_at)
-                                    <a class="nav-link" style="color: coral"
-                                        href="{{ url('/cart', Auth::user()->id) }}">Cart[{{ $cartCount }}]</a>
+                                    <div class="cart-container">
+                                        <a class="cart" href="{{ url('/cart', Auth::user()->id) }}"
+                                            style="text-decoration: none">
+                                            <img src="{{ asset('/images/cart.png') }}" alt="Cart Icon" width="20"
+                                                height="20">
+                                        </a>
+                                        ({{ $cartCount }})
+                                    </div>
                                 @else
-                                    <span class="nav-link disabled" style="color: gray;">Cart[{{ $cartCount }}]</span>
+                                    <div class="cart-container">
+                                        <a class="cart disabled" href="{{ url('/cart', Auth::user()->id) }}"
+                                            style="text-decoration: none; pointer-events: none;">
+                                            <img src="{{ asset('/images/cart.png') }}" alt="Cart Icon" width="20"
+                                                height="20">
+                                        </a>
+                                        ({{ $cartCount }})
+                                    </div>
                                 @endif
                             </li>
-
                         @endauth
-                        @guest
-                            <li class="nav-item">
 
-                                <a class="nav-link" style="color: red" href="/login" style="color: black;">Cart[0]</a>
 
-                            </li>
-                        @endguest
+
+
+
+
+
 
 
 

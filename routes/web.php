@@ -39,12 +39,12 @@ Route::controller(ContactController::class)->group(function () {
 
 
 Route::controller(HomePageController::class)->group(function () {
-    Route::get('/', 'ViewCategoryHome');
+    Route::get('/', 'viewCategoryHome');
 
 });
 
 Route::controller(MenuController::class)->group(function () {
-    Route::get('/menu', 'ViewProduct');
+    Route::get('/menu', 'viewProduct');
 
 });
 
@@ -66,22 +66,22 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post("/place-order", [CheckOutController::class, 'placeorder']);
 
-                                   
-    Route::get("my-orders",[FUserController::class,'index']);
+
+    Route::get("my-orders", [FUserController::class, 'index']);
     Route::controller(HomePageController::class)->group(function () {
-        Route::get('/dashboard', 'ViewCategoryHome');
-    
+        Route::get('/dashboard', 'viewCategoryHome');
+
     });
 
 
-    Route::get("view-order/{id}",[FUserController::class,'view']);
+    Route::get("view-order/{id}", [FUserController::class, 'view']);
 
     Route::get('my-profile', [FUserController::class, 'viewprofile'])->name('my-profile');
 
 
-    Route::get('edit-profile/{id}', [FUserController::class,'editprofile']);
+    Route::get('edit-profile/{id}', [FUserController::class, 'editprofile']);
 
-    Route::put('updateprofile/{id}', [FUserController::class,'updateprofile']);
+    Route::put('updateprofile/{id}', [FUserController::class, 'updateprofile']);
 
 
 
@@ -99,17 +99,17 @@ Route::middleware(['auth'])->group(function () {
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
-    Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
+    Route::get('/admin/dashboard', [AdminController::class, 'adminDashboard'])->name('admin.dashboard');
+    Route::get('/admin/logout', [AdminController::class, 'adminLogout'])->name('admin.logout');
 
     Route::controller(CategoryController::class)->group(function () {
 
-        Route::get('admin/category', 'Category')->name('admin.category');
-        Route::get('admin/addcategory', 'AddCategory')->name('admin.addcategory');
-        Route::post('admin/storecategory', 'StoreCategory')->name('admin.storecategory');
-        Route::get('admin/editcategory/{id}', 'EditCategory')->name('admin.editcategory');
-        Route::put('admin/updatecategory/{id}', 'UpdateCategory');
-        Route::get('admin/deletecategory/{id}', 'DeleteCategory')->name('admin.deletecategory');
+        Route::get('admin/category', 'category')->name('admin.category');
+        Route::get('admin/addcategory', 'addCategory')->name('admin.addcategory');
+        Route::post('admin/storecategory', 'storeCategory')->name('admin.storecategory');
+        Route::get('admin/editcategory/{id}', 'editCategory')->name('admin.editcategory');
+        Route::put('admin/updatecategory/{id}', 'updateCategory');
+        Route::get('admin/deletecategory/{id}', 'deleteCategory')->name('admin.deletecategory');
 
 
 
@@ -117,30 +117,30 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::controller(ProductController::class)->group(function () {
 
-        Route::get('admin/products', 'Product')->name('admin.products');
-        Route::get('admin/addproducts', 'AddProducts')->name('admin.addproducts');
-        Route::post('admin/storeproducts', 'StoreProducts')->name('admin.storeproducts');
-        Route::get('admin/editproduct/{id}', 'EditProduct');
-        Route::put('admin/updateproduct/{id}', 'UpdateProducts');
-        Route::get('admin/deleteproduct/{id}', 'DeleteProduct')->name('admin.deleteproduct');
+        Route::get('admin/products', 'product')->name('admin.products');
+        Route::get('admin/addproducts', 'addProducts')->name('admin.addproducts');
+        Route::post('admin/storeproducts', 'storeProducts')->name('admin.storeproducts');
+        Route::get('admin/editproduct/{id}', 'editProduct');
+        Route::put('admin/updateproduct/{id}', 'updateProducts');
+        Route::get('admin/deleteproduct/{id}', 'deleteProduct')->name('admin.deleteproduct');
 
 
 
     });
 
     Route::controller(UserController::class)->group(function () {
-        Route::get('admin/users', 'Users')->name('admin.users');
-        Route::get('admin/addusers', 'AddUsers')->name('admin.addusers');
-        Route::post('admin/storeusers', 'StoreUsers')->name('admin.storeusers');
-        Route::get('admin/edituser/{id}', 'EditUser');
-        Route::put('admin/updateuser/{id}', 'UpdateUser');
-        Route::get('admin/deleteuser/{id}', 'DeleteUser')->name('admin.deleteuser');
+        Route::get('admin/users', 'users')->name('admin.users');
+        Route::get('admin/addusers', 'addUsers')->name('admin.addusers');
+        Route::post('admin/storeusers', 'storeUsers')->name('admin.storeusers');
+        Route::get('admin/edituser/{id}', 'editUser');
+        Route::put('admin/updateuser/{id}', 'updateUser');
+        Route::get('admin/deleteuser/{id}', 'deleteUser')->name('admin.deleteuser');
 
 
     });
 
     Route::controller(OrderController::class)->group(function () {
-        Route::get('admin/orders', 'Order')->name('admin.orders');
+        Route::get('admin/orders', 'order')->name('admin.orders');
         Route::patch('/admin/orders/{order}', 'updateStatus')->name('admin.updateStatus');
 
         Route::get('/order/{id}', 'show')->name('admin.viewOrder');

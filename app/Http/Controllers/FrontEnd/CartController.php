@@ -10,7 +10,7 @@ use App\Models\Cart;
 class CartController extends Controller
 {
 
-    public function CartCount(){
+    public function cartCount(){
         $user_id = Auth::id();
 
         $cartnumber = Cart::where('user_id', $user_id)->count();
@@ -25,25 +25,30 @@ class CartController extends Controller
             $product_id = $id;
             $quantity = $request->quantity;
     
-            // Check if the product is already in the user's cart
             $existingCartItem = Cart::where('user_id', $user_id)
                                     ->where('product_id', $product_id)
                                     ->first();
     
             if ($existingCartItem) {
-                // If the product is already in the cart, update the quantity
                 $existingCartItem->quantity += $quantity;
                 $existingCartItem->save();
             } else {
-                // If the product is not in the cart, create a new entry
+                
                 $cart = new Cart();
                 $cart->user_id = $user_id;
                 $cart->product_id = $product_id;
                 $cart->quantity = $quantity;
                 $cart->save();
             }
+
+            $notification = [
+                'message' => 'Product Added to Cart Successfully',
+                'alert-type' => 'success',
+            ];
     
-            return redirect()->back();
+            
+    
+            return redirect()->back()->with($notification);
         } else {
             return redirect(route('login'));
         }

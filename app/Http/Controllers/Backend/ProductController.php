@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 class ProductController extends Controller
 {
 
-    public function Product()
+    public function product()
     {
 
 
@@ -23,9 +23,9 @@ class ProductController extends Controller
 
     }
 
-    public function ViewProduct()
+    public function viewProduct()
     {
-        $viewproducts = Product::take(10)->get(); // Replace 10 with the number of products you want to display
+        $viewproducts = Product::take(10)->get(); 
 
         $categories = Category::all();
 
@@ -33,7 +33,6 @@ class ProductController extends Controller
 
     }
 
-    // In your controller
    
 
 
@@ -44,13 +43,13 @@ class ProductController extends Controller
 
 
 
-    public function AddProducts()
+    public function addProducts()
     {
         $categories = Category::all();
         return view('admin.products.addproducts', compact('categories'));
     }
 
-    public function StoreProducts(Request $request)
+    public function storeProducts(Request $request)
     {
 
         $request->validate([
@@ -63,7 +62,7 @@ class ProductController extends Controller
         ]);
 
 
-        //Image Upload
+        
 
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('product_images', 'public');
@@ -73,7 +72,6 @@ class ProductController extends Controller
         }
 
 
-        //Save to Databsse
 
         Product::create([
             'name' => $request->name,
@@ -102,7 +100,7 @@ class ProductController extends Controller
 
     }
 
-    public function EditProduct($id)
+    public function editProduct($id)
     {
         $product = Product::find($id);
         $categories = Category::all();
@@ -111,7 +109,7 @@ class ProductController extends Controller
     }
 
 
-    public function UpdateProducts(Request $request, $id)
+    public function updateProducts(Request $request, $id)
     {
         $request->validate([
             'name' => 'required|max:20|unique:products,name,' . $id,
@@ -122,28 +120,23 @@ class ProductController extends Controller
             'item' => 'required|in:veg,non-veg',
         ]);
 
-        // Retrieve the existing product
         $product = Product::findOrFail($id);
 
-        // Delete the old image if it exists
         if ($request->hasFile('image') && $product->product_image) {
             Storage::disk('public')->delete($product->product_image);
         }
 
-        // Update product information
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = $request->price;
         $product->category_id = $request->category;
         $product->item = $request->item;
 
-        // Update image if provided
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('product_images', 'public');
             $product->product_image = $imagePath;
         }
 
-        // Save changes to the database
         $product->update();
 
         $notification = [
@@ -154,7 +147,7 @@ class ProductController extends Controller
         return redirect()->route('admin.products')->with($notification);
     }
 
-    public function DeleteProduct(Request $request)
+    public function deleteProduct(Request $request)
     {
         $id = $request->id;
 

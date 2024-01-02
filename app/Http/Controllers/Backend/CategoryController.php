@@ -12,7 +12,7 @@ class CategoryController extends Controller
 
 
    
-    public function Category()
+    public function category()
     {
         $category = Category::orderBy('created_at', 'desc')->paginate(5);
         
@@ -23,7 +23,7 @@ class CategoryController extends Controller
     
 
 
-    public function AddCategory()
+    public function addCategory()
     {
         return view('admin.category.addcategory');
     }
@@ -38,14 +38,12 @@ class CategoryController extends Controller
             'category_icon' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file types and size as needed
         ]);
 
-        // Handle file upload
         if ($request->hasFile('category_icon')) {
             $imagePath = $request->file('category_icon')->store('category_icons', 'public');
         } else {
             $imagePath = null;
         }
 
-        // Save to database
         Category::create([
             'name' => $request->name,
             'category_icon' => $imagePath,
@@ -60,7 +58,7 @@ class CategoryController extends Controller
     }
 
 
-    public function EditCategory($id)
+    public function editCategory($id)
     {
 
         $category = Category::findOrFail($id);
@@ -70,31 +68,27 @@ class CategoryController extends Controller
 
 
 
-    public function UpdateCategory(Request $request,$id)
+    public function updateCategory(Request $request,$id)
     {
         
 
         $request->validate([
             'name' => 'required|unique:categories,name,' . $id . '|max:20',
-            'category_icon' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file types and size as needed
+            'category_icon' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $category = Category::findOrFail($id);
 
-        // Handle file upload
         if ($request->hasFile('category_icon')) {
-            // Delete the old file if it exists
             if ($category->category_icon) {
                 Storage::disk('public')->delete($category->category_icon);
             }
 
-            // Upload the new file
             $imagePath = $request->file('category_icon')->store('category_icons', 'public');
         } else {
             $imagePath = $category->category_icon;
         }
 
-        // Update category
         $category->update([
             'name' => $request->name,
             'category_icon' => $imagePath,
@@ -109,19 +103,17 @@ class CategoryController extends Controller
     }
 
 
-    public function DeleteCategory(Request $request)
+    public function deleteCategory(Request $request)
     {
         $id = $request->id;
 
         $category = Category::findOrFail($id);
-        $categoryName = $category->name; // Get the category name before deletion
+        $categoryName = $category->name; 
 
-        // Delete the category icon file if it exists
         if ($category->category_icon) {
             Storage::disk('public')->delete($category->category_icon);
         }
 
-        // Delete the category from the database
         $category->delete();
 
         $notification = [

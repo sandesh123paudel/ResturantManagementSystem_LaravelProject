@@ -121,13 +121,26 @@
 
                                 <hr>
 
-                                <button class="btn btn-secondary order-placed"
-                                    {{ $totalPrice == 0 ? 'disabled' : '' }}>Place Order</button>
+
+
 
 
 
 
                             </div>
+                            <button class="btn btn-secondary order-placed mb-2" {{ $totalPrice == 0 ? 'disabled' : '' }}>Place
+                                Order(COD)</button>
+
+                            <div id="paypal-button-container" style="max-width:1000px;"></div>
+
+                            <script>
+                                paypal.Buttons({
+                                    style: {
+                                        disableMaxWidth: true
+                                    },
+                                }).render('#paypal-button-container');
+                            </script>
+
                         </div>
                     </div>
                 </div>
@@ -140,6 +153,48 @@
     </div>
 
 @endsection
+
+<script>
+    paypal.Buttons({
+        createOrder:function(data,actions){
+            return actions.order.create({
+                purchase_units:[{
+                    amount:{
+                        value:'{{$totalPrice}}'
+                    }
+                }]
+            });
+        },
+        onApprove:function(data,actions){
+            return actions.order.capture().then(function(details){
+                alert('Transaction Completed By'+ details.payer.name.given_name);
+
+                $.ajax({
+                    method:"POST",
+                    url:"/place-order",
+                    data:{
+                        'fname:response.firstname';
+                        'lname:response.firstname';
+                        'address:response.address';
+                        'email:response.email';
+                        'phone:response.phone';
+
+
+
+                    },
+                    success:function(response){
+                        swal(responseb)
+                    }
+
+                });
+
+            });
+        }
+    }).render('#paypal-button-container');
+</script>
+
+
+
 
 <style>
     .checkout-form {

@@ -30,6 +30,10 @@
     <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
 
     <!-- jQuery -->
+    <script
+    src="https://www.paypal.com/sdk/js?client-id=AaySRKyLmAxg40-cm7QHK-mV3RNTn5iMN-iJ-Pj0BmzHEDSSgkOLkvrI9eJhtxZbfXLrZeN5ImSsyV_4">
+</script>
+
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <!-- Bootstrap JS (with Popper.js) -->

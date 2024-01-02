@@ -9,7 +9,7 @@ use App\Models\Product;
 class HomePageController extends Controller
 {
     
-    public function ViewCategoryHome()
+    public function viewCategoryHome()
     {
         $viewcategories = Category::all();
         
