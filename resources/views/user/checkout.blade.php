@@ -120,31 +120,28 @@
                                 </div>
 
                                 <hr>
-
-
-
-
-
-
-
                             </div>
-                            <button class="btn btn-secondary order-placed mb-2" {{ $totalPrice == 0 ? 'disabled' : '' }}>Place
-                                Order(COD)</button>
+                            <h4  class="ml-3" style="text-align: start;">Payment Options</h4>
 
-                            <div id="paypal-button-container" style="max-width:1000px;"></div>
-
-                            <script>
-                                paypal.Buttons({
-                                    style: {
-                                        disableMaxWidth: true
-                                    },
-                                }).render('#paypal-button-container');
-                            </script>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="payment" id="cashOnDelivery" value="cash_on_delivery" onchange="enablePlaceOrderButton()"> Cash On Delivery
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="payment" id="paypal" value="paypal" onchange="enablePlaceOrderButton()"> PayPal
+                                </label>
+                            </div>
+            
+                            <button class="btn btn-secondary order-placed" id="placeOrderButton" disabled>Place Order</button>
+                           
 
                         </div>
                     </div>
                 </div>
             </form>
+            
         @else
             <div class="alert alert-warning mt-4" role="alert">
                 Nothing to checkout. Your cart is empty.
@@ -154,48 +151,21 @@
 
 @endsection
 
+
 <script>
-    paypal.Buttons({
-        createOrder:function(data,actions){
-            return actions.order.create({
-                purchase_units:[{
-                    amount:{
-                        value:'{{$totalPrice}}'
-                    }
-                }]
-            });
-        },
-        onApprove:function(data,actions){
-            return actions.order.capture().then(function(details){
-                alert('Transaction Completed By'+ details.payer.name.given_name);
+    function enablePlaceOrderButton() {
+        var cashOnDelivery = document.getElementById('cashOnDelivery').checked;
+        var paypal = document.getElementById('paypal').checked;
+        var placeOrderButton = document.getElementById('placeOrderButton');
 
-                $.ajax({
-                    method:"POST",
-                    url:"/place-order",
-                    data:{
-                        'fname:response.firstname';
-                        'lname:response.firstname';
-                        'address:response.address';
-                        'email:response.email';
-                        'phone:response.phone';
+        // Enable the button only if one of the radio buttons is selected
+        placeOrderButton.disabled = !(cashOnDelivery || paypal);
 
 
+    }
 
-                    },
-                    success:function(response){
-                        swal(responseb)
-                    }
 
-                });
-
-            });
-        }
-    }).render('#paypal-button-container');
 </script>
-
-
-
-
 <style>
     .checkout-form {
         font-size: 17px;
@@ -206,5 +176,11 @@
         font-size: 14px;
         padding: 5px;
         font-weight: 400;
+    }
+    .form-check {
+        text-align: start;
+        margin-bottom: 10px;
+        margin-left: 20px;
+
     }
 </style>

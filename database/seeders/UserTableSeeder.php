@@ -16,39 +16,39 @@ class UserTableSeeder extends Seeder
     public function run(): void
     {
 
-        DB::table('users')->insert([
-            //Admin
-            [
-                'name'=> 'Admin',
-                'email'=> 'sandeshpaudel0618@gmail.com',
-                'phone'=>'9815555096',
-                'role'=>'admin',
-                'password'=> hash::make('password')
+        // DB::table('users')->insert([
+        //     //Admin
+        //     [
+        //         'name'=> 'Admin',
+        //         'email'=> 'sandeshpaudel0618@gmail.com',
+        //         'phone'=>'9815555096',
+        //         'role'=>'admin',
+        //         'password'=> hash::make('password')
 
-            ],
+        //     ],
 
-            //User
-            [
-                'name'=> 'Sandesh Paudel',
-                'email'=> 'sandypoudel24@gmail.com',
-                'phone'=>'9863464699',
-                'role'=>'user',
-                'password'=> hash::make('password')
+        //     //User
+        //     [
+        //         'name'=> 'Sandesh Paudel',
+        //         'email'=> 'sandypoudel24@gmail.com',
+        //         'phone'=>'9863464699',
+        //         'role'=>'user',
+        //         'password'=> hash::make('password')
 
-            ],
+        //     ],
 
-            //User2
+        //     //User2
 
-            [
-                'name'=> 'Ramesh Acharya',
-                'email'=> 'p.sandesh24@tbc.edu.np',
-                'phone'=>'9815555097',
-                'role'=>'user',
-                'password'=> hash::make('password')
+        //     [
+        //         'name'=> 'Ramesh Acharya',
+        //         'email'=> 'p.sandesh24@tbc.edu.np',
+        //         'phone'=>'9815555097',
+        //         'role'=>'user',
+        //         'password'=> hash::make('password')
 
-            ]
+        //     ]
 
 
-        ]);
+        // ]);
     }
 }

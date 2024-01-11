@@ -7,13 +7,15 @@ use Illuminate\Http\Request;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 
-
 use App\Models\Order;
 use App\Models\OrderItems;
+use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
+use Illuminate\Support\Facades\Log;
 
 class CheckOutController extends Controller
 {
+
     public function index()
     {
 
@@ -23,10 +25,6 @@ class CheckOutController extends Controller
 
         return view('user.checkout', compact('cartItems'));
     }
-
-
-
-
     public function placeorder(Request $request)
     {
         $request->validate([
@@ -35,7 +33,7 @@ class CheckOutController extends Controller
             'email' => 'required|email|max:255',
             'phone' => 'required|string|max:20',
             'address' => 'required|string|max:255',
-
+            'payment' => 'required',
         ]);
 
         $order = new Order();
@@ -48,28 +46,78 @@ class CheckOutController extends Controller
         $order->address = $request->input('address');
         $order->totalPrice = $request->input('totalPrice');
         $order->tracking_no = '#ODR' . rand(1111, 9999);
+        $order->payment = $request->input('payment');
 
-        $order->save();
+       
+        try {
+            if ($request->input('payment') == 'paypal') {
+                
 
-        $cartItems = Cart::where('user_id', Auth::id())->get();
+                $provider = new PayPalClient;
+                
+               
+                $token= $provider->getAccessToken();
 
-        foreach ($cartItems as $item) {
-            OrderItems::create([
-                'order_id' => $order->id,
-                'product_id' => $item->product_id,
-                'quantity' => $item->quantity,
-                'price' => $item->products->price,
-            ]);
+                
+                $provider->setAccessToken($token);
+                
+                $orderPayPal = $provider->createOrder([
+                    "intent" => "CAPTURE",
+                    "application_context" => [
+                        "return_url" => route('payment.success'),
+                        "cancel_url" => route('payment.cancel'),
+                    ],
+                    "purchase_units" => [
+                        0 => [
+                            "amount" => [
+                                "currency_code" => "USD",
+                                "value" => $request->input('totalPrice')
+                            ]
+                        ]
+                    ]
+                ]);
+                
+                return redirect($orderPayPal['links'][1]['href']);
+              
+            }
+        
+       
+            
+             else {
+                // Handle other payment methods
+                $order->save();
+            }
+
+            $cartItems = Cart::where('user_id', Auth::id())->get();
+
+            foreach ($cartItems as $item) {
+                OrderItems::create([
+                    'order_id' => $order->id,
+                    'product_id' => $item->product_id,
+                    'quantity' => $item->quantity,
+                    'price' => $item->products->price,
+                ]);
+            }
+
+            Cart::destroy($cartItems);
+            $notification = [
+                'message' => 'Order Placed Successfully',
+                'alert-type' => 'success',
+            ];
+           
+
+            return redirect('/')->with($notification);
+        } catch (\Exception $e) {
+            Log::error('Error processing payment: ' . $e->getMessage());
+
+            $notification = [
+                'message' => 'Error processing payment. Please try again later.',
+                'alert-type' => 'error',
+            ];
+
+
+            return redirect()->back()->withInput()->with($notification);
         }
-
-        Cart::destroy($cartItems);
-
-        $notification = [
-            'message' => 'Order Placed Successfully',
-            'alert-type' => 'success',
-        ];
-
-        return redirect('/')->with($notification);
     }
 
 }

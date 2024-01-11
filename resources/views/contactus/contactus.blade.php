@@ -30,21 +30,21 @@
 
                             <div class="form-group">
                                 <input type="text" name="name" class="form-control" placeholder="Your Name" required
-                                    value="{{ old('name') }}" />
+                                    value="{{ Auth::user()->name }}" />
                                 @error('name')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <input type="email" name="email" class="form-control" placeholder="Your E-mail Address"
-                                    required value="{{ old('email') }}" />
+                                    required value="{{ Auth::user()->email }}" />
                                 @error('email')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <input type="tel" name="phone" class="form-control" placeholder="Your Phone Number"
-                                    required value="{{ old('phone') }}" />
+                                    required value="{{ Auth::user()->phone }}" />
                                 @error('phone')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror

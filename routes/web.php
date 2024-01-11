@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\FrontEnd\CartController;
-use App\Http\Controllers\ProfileController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\CategoryController;
@@ -55,6 +56,8 @@ Route::controller(MenuController::class)->group(function () {
 });
 
 
+
+
 Route::middleware(['auth'])->group(function () {
     Route::post("/addcart/{id}", [CartController::class, 'addCart']);
 
@@ -62,9 +65,15 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get("/remove/{id}", [CartController::class, 'removeCart']);
 
-    Route::get("/checkout", [CheckOutController::class, 'index']);
+    Route::get("/checkout", [CheckOutController::class, 'index'])->name('checkout');
 
     Route::post("/place-order", [CheckOutController::class, 'placeorder']);
+    Route::get('payment-cancel',[PayPalController::class,'cancel'])->name('payment.cancel');
+    Route::get('payment-success',[PayPalController::class,'success'])->name('payment.success');
+    
+    
+
+
 
 
     Route::get("my-orders", [FUserController::class, 'index']);
