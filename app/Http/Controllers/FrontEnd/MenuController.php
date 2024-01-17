@@ -16,7 +16,6 @@ class MenuController extends Controller
     public function searchSort(Request $request)
     {
 
-        
         $searchQuery = $request->input('search');
         $sortOption = $request->input('sort');
         $foodType = $request->input('food_type');

@@ -50,7 +50,7 @@
     <div class="content">
         @yield('content')
     </div>
-
+    
     @include('frontend.footer')
 
 

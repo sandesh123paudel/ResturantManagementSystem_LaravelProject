@@ -12,8 +12,7 @@ class PayPalController extends Controller
     {
         dd($request);
     }
-
-
+    
     public function success(Request $request)
     {
         $provider = new PayPalClient;

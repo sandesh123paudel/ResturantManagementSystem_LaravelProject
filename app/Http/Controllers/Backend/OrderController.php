@@ -12,7 +12,6 @@ class OrderController extends Controller
     {
 
 
-        
         $orders = Order::orderBy('created_at', 'desc')->paginate(10);
 
 
