@@ -43,6 +43,16 @@
                         </td>
                     </tr>
                     <tr>
+                        <th>Payment Mode:</th>
+                        <td>
+                            @if($order->payment== 'cash_on_delivery')
+                                        <span class="badge bg-danger">COD</span>
+                                        @elseif($order->payment== 'paypal')
+                                        <span class="badge bg-blue">PayPal</span>
+                                        @endif
+                        </td>
+                    </tr>
+                    <tr>
                         <th>Total:</th>
                         <td>Rs.{{ $order->totalPrice }}</td>
                     </tr>

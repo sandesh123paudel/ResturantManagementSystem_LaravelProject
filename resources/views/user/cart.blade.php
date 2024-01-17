@@ -84,9 +84,9 @@
                         </div>
 
                         <div class="d-flex justify-content-end">
-                            <a href="{{ url('menu') }}" class="btn btn-lg btn-secondary mt-2 mr-2">Continue Ordering</a>
+                            <a href="{{ url('menu') }}" class="btn btn-sm btn-secondary mt-2 mr-2">Continue Ordering</a>
                             <a href="{{ url('checkout') }}"
-                                class="btn btn-lg btn-success ml-3 mt-2 @if ($totalPrice === 0) disabled @endif">Checkout</a>
+                                class="btn btn-sm btn-success ml-3 mt-2 @if ($totalPrice === 0) disabled @endif">Checkout</a>
                         </div>
                     @else
                         <div class="alert alert-info text-center mt-4" role="alert">

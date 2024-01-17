@@ -28,6 +28,16 @@
                             <label for="">Delivery Address</label>
                             <div class="border p-2">{{$orders->address}}</div>
 
+                            <label for="">Payment</label>
+                            <div class="border p-2">@if($orders->payment == 'cash_on_delivery')
+                                <button class="btn btn-sm btn-danger" type="button">COD</button>
+                            @elseif($orders->payment == 'paypal')
+                                <button class="btn btn-sm btn-primary" type="button">PayPal</button>
+                            @endif
+</div>
+                            
+                            
+                    
                         </div>
                         <div class="col-md-6">
                             <table class="table table-hover ">
@@ -39,6 +49,8 @@
                                         <th>Quantity</th>
                                         <th>Price</th>
                                         <th>Total Price</th>
+                                        
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -50,19 +62,27 @@
                                         <td>{{$order->quantity}}</td>
                                         <td>Rs.{{$order->price}}</td>
                                         <td>Rs.{{($order->quantity * $order->price)}}</td>
+                                
+    
 
 
 
                                         
                                     </tr>
+                                    
                                         
                                     @endforeach
                                 </tbody>
+                                
+                            </div>
                 
                             </table>
                             <div class="card-footer">
                                 <p class="text-right" style="font-weight:700">Grand Total: Rs {{$orders->totalPrice}}</p>
                             </div>
+                            
+                           
+                           
                         </div>
                     </div>
                     

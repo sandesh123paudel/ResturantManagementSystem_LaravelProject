@@ -27,24 +27,24 @@
 
                         <form action="{{ route('contact.submit') }}" method="post" class="my-4" id="contactForm">
                             @csrf
-
+                         
                             <div class="form-group">
                                 <input type="text" name="name" class="form-control" placeholder="Your Name" required
-                                    value="{{ Auth::user()->name }}" />
+                                    value="{{old('name')}}" />
                                 @error('name')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <input type="email" name="email" class="form-control" placeholder="Your E-mail Address"
-                                    required value="{{ Auth::user()->email }}" />
+                                    required value="{{old('email')}}" />
                                 @error('email')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <input type="tel" name="phone" class="form-control" placeholder="Your Phone Number"
-                                    required value="{{ Auth::user()->phone }}" />
+                                    required value="{{old('phone')}}" />
                                 @error('phone')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -56,6 +56,8 @@
                                 @enderror
                             </div>
                             <button type="submit" class="btn btn-secondary btn-send">Get a Call Back</button>
+
+                            
                         </form>
 
 

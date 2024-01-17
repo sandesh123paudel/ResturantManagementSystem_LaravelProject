@@ -91,12 +91,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('edit-profile/{id}', [FUserController::class, 'editprofile']);
 
     Route::put('updateprofile/{id}', [FUserController::class, 'updateprofile']);
-
-
-
-
-
-
 });
 
 

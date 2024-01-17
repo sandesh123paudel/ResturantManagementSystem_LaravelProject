@@ -39,7 +39,10 @@
                                 <th>Customer</th>
                                 <th>Email</th>
                                 <th>Phone</th>
+                                
                                 <th>Status</th>
+                                <th>Payment</th>
+
                                 <th>Total</th>
                                 <th>Date Purchased</th>
                                 <th>Action</th>
@@ -64,6 +67,14 @@
                                         @endif
                                     </td>
                                     
+
+                                    <td>@if($order->payment== 'cash_on_delivery')
+                                        <span class="badge bg-danger">COD</span>
+                                        @elseif($order->payment== 'paypal')
+                                        <span class="badge bg-blue">PayPal</span>
+                                        @endif
+                                        
+                                    </td>
 
 
                                     <td>Rs.{{ $order->totalPrice }}</td>
