@@ -54,8 +54,11 @@
                             <td>{{$key+1}}</td>
                             <td>{{$item->name}}</td>
                             <td>
+                                
                                 @if($item->category_icon)
-                                    <img src="{{ asset('storage/' . $item->category_icon) }}" alt="Icon" class="category-icon rounded-circle border border-grey" style="max-width:60px; max-height:60px">
+                                {{-- <img src="{{ asset('storage/public/' . $item->category_icon) }}" alt="Icon" class="category-icon rounded-circle border border-grey" style="max-width:60px; max-height:60px"> --}}
+                                <img src="{{ Storage::url('public/images/sandesh.jpg') }}" alt="Image Alt Text">
+
                                 @else
                                     No Icon
                                 @endif

@@ -52,7 +52,7 @@
                                             <input type="file" name="image" id="image" class="form-control"
                                                 value="">
                                             @if ($product->product_image)
-                                                <img src="{{ asset('storage/' . $product->product_image) }}"
+                                                <img src="{{ asset('storage/' . $product->product_images) }}"
                                                     alt="Product Image" style="max-width: 100px; max-height: 100px;">
                                             @else
                                                 <p>No image available</p>
